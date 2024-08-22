@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --button-primary: #f44336;
+  --button-primary-hover: #e53935;
+  --button-primary-active: #d32f2f;
+  --button-secondary: #761919;
+  --button-secondary-hover: #651414;
+  --button-secondary-active: #5d0b0b;
+  --button-tertiary: #e0e0e0;
+  --button-tertiary-hover: #d7d7d7;
+  --button-tertiary-active: #c5c5c5;
+  --button-tertiary-text: #757575;
+  --text-primary: #ffffff;
+  --text-secondary: #bbbbbb;
+}
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  color: black;
+  border: none;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 9999;
+}
+
+/* styles/globals.css */
+
+body {
+  background-color: #ffffff; /* Black */
+  color: #000000; /* White for text */
+  font-family: Arial, sans-serif;
+}
+
+.navbar,
+.footer {
+  background-color: #ffd700; /* Gold */
+  color: #000000; /* Black for contrast */
+}
+
+.c-button {
+  background-color: #ffffff; /* White */
+  color: #000000; /* Black */
+  border: 2px solid #ffd700; /* Gold */
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.c-button:hover {
+  background-color: #ffd700; /* Gold on hover */
+  color: #000000; /* Black */
+}
+
+.card-front {
+  background-color: #1c1c1c; /* Dark grey to differentiate from black body */
+  color: #ffffff; /* White for text */
+  border: 1px solid rgba(192, 192, 192, 1); /* Gold */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.card-full {
+  background-color: #1c1c1c; /* Dark grey to differentiate from black body */
+  color: #ffffff; /* White for text */
+  border: 1px solid #ffd700; /* Gold */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.link {
+  color: #ffd700; /* Gold for links */
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.link:hover {
+  color: #ffffff; /* White on hover */
+}
+.c-text-secondary {
+  color: rgba(192, 192, 192, 0.8);
+}
+
+/* Additional styles for components */
+
+/* Chrome, Edge and Safari */
+*::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+*::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background-color: white;
+}
+
+*::-webkit-scrollbar-track:hover {
+  background-color: #666666;
+}
+
+*::-webkit-scrollbar-track:active {
+  background-color: #b8c0c2;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: #000000;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #000000;
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: #000000;
+}

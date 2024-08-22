@@ -1,0 +1,15 @@
+.word {
+  display: inline-block;
+}
+
+.word:nth-child(1) {
+  color: #00c7cf;
+}
+
+.word:nth-child(2) {
+  color: #b83333;
+}
+
+.word:nth-child(3) {
+  color: #7f00ff;
+}
