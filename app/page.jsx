@@ -56,7 +56,7 @@ export default function Home() {
         <Contact />
       </div>
       {showScrollToTop && (
-        <button className="scroll-to-top text-sm flex flex-col hover:text-[#FFD700] hover:scale-125 transition-all tracking-tight" onClick={scrollToTop}>
+        <button className="scroll-to-top text-sm flex flex-col hover:text-purple-700 hover:scale-125 transition-all tracking-tight" onClick={scrollToTop}>
           <IoMdRocket size={50} />
           <span className='text-sm'>Top</span>
         </button>

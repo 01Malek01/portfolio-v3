@@ -46,7 +46,7 @@ function Header() {
                 className="font-semibold text-gray-300 hover:text-white transition-colors duration-300"
               >
                 {link.label}
-                <span className="absolute bottom-0 left-0 w-full h-1 bg-yellow-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+                <span className="absolute bottom-0 left-0 w-full h-1 bg-purple-700 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
               </motion.div>
             </Link>
           ))}
@@ -55,9 +55,9 @@ function Header() {
         {/* Social Links */}
         <div className="flex gap-6">
           {[
-            { href: 'https://github.com/01Malek01', icon: <BsGithub className="text-xl hover:text-yellow-400 transition-colors duration-300" /> },
-            { href: 'https://www.linkedin.com/in/malek-mostafa-salah-026362222/', icon: <BsLinkedin className="text-xl hover:text-yellow-400 transition-colors duration-300" /> },
-            { href: 'mailto:malekmostafa0051@gmail.com', icon: <HiOutlineMail className="text-xl hover:text-yellow-400 transition-colors duration-300" /> }
+            { href: 'https://github.com/01Malek01', icon: <BsGithub className="text-xl hover:text-purple-700 transition-colors duration-300" /> },
+            { href: 'https://www.linkedin.com/in/malek-mostafa-salah-026362222/', icon: <BsLinkedin className="text-xl hover:text-purple-700 transition-colors duration-300" /> },
+            { href: 'mailto:malekmostafa0051@gmail.com', icon: <HiOutlineMail className="text-xl hover:text-purple-700 transition-colors duration-300" /> }
           ].map((link) => (
             <Link key={link.href} href={link.href} className="hover:scale-110 transition-transform duration-300">
               <motion.div

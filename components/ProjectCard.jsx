@@ -22,7 +22,7 @@ function ProjectCard({ projectTitle, projectDescription, projectImage, githubLin
   };
 
   const renderDescription = () => {
-    if (!isMobile || isExpanded || projectDescription.length <= 100) {
+    if (isExpanded || projectDescription.length <= 100) {
       return projectDescription;
     }
     return `${projectDescription.substring(0, 100)}...`;
@@ -31,16 +31,17 @@ function ProjectCard({ projectTitle, projectDescription, projectImage, githubLin
   return (
     <div className={`${styles} bg-base-100 md:w-96 w-72 shadow-xl md:hover:scale-110 hover:z-10 transition duration-300 ease-in-out`}>
       <div className="card-body">
-        <h2 className="card-title">{projectTitle}</h2>
+        <h2 className="card-title text-semibold text-2xl mb-2">{projectTitle}</h2>
+
         <p className='text-sm md:text-lg '>{renderDescription()}</p>
-        {isMobile && projectDescription.length > 100 && (
-          <span className="text-blue-500 underline" onClick={toggleExpand}>
+        {projectDescription.length > 100 && (
+          <span className="text-blue-500 underline cursor-pointer" onClick={toggleExpand}>
             {isExpanded ? 'Read Less' : 'Read More'}
           </span>
         )}
         <div className="divider"></div>
         <span className='text-orange-500'>Available Links :</span>
-        <div className="card-actions mt-5 flex flex-wrap justify-around">
+        <div className="card-actions m-5 flex flex-wrap justify-around">
           {githubLink && <Link href={githubLink} className="link">Github Repo</Link>}
           {liveLink && <Link href={liveLink} className="link">Live Preview</Link>}
         </div>
