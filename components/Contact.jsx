@@ -59,7 +59,7 @@ export function Contact() {
         {/* Three Circles positioned around the central one */}
         <motion.div
           initial={{ opacity: 0, top: "0" }}
-          animate={{ opacity: 1, top: `${isMobile ? '-8rem' : '-10rem'}` }}
+          whileInView={{ opacity: 1, top: `${isMobile ? '-8rem' : '-10rem'}` }}
           transition={{ duration: 1.5 }}
           className="absolute md:-top-40 left-1/2 transform -translate-x-1/2 cursor-pointer"
         >
@@ -80,8 +80,8 @@ export function Contact() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, left: 0 }}
-          animate={{ opacity: 1, left: `${isMobile ? '0' : '-8rem'}` }}
+          initial={{ opacity: 0, left: "-2rem" }}
+          whileInView={{ opacity: 1, left: `${isMobile ? '0' : '-8rem'}` }}
           transition={{ duration: 1.5 }}
           className="absolute -bottom-24 md:-left-32 cursor-pointer"
         >
@@ -98,7 +98,7 @@ export function Contact() {
 
         <motion.div
           initial={{ opacity: 0, right: '-2rem' }}
-          animate={{ opacity: 1, right: `${isMobile ? '0' : '-8rem'}` }}
+          whileInView={{ opacity: 1, right: `${isMobile ? '0' : '-8rem'}` }}
           transition={{ duration: 1.5 }}
           className="absolute -bottom-24 md:-right-32 cursor-pointer"
         >
