@@ -1,3 +1,0 @@
-[build]
-  command = "apt-get update && apt-get install -y unixodbc-dev && npm install && npm run build"
-  publish = "build"
