@@ -20,7 +20,13 @@ function Projects() {
   }, [choice]);
 
   return (
-    <section id="projects" className="relative bg-white py-12 px-6 lg:px-12 min-h-[50vh] flex flex-col items-center">
+    <motion.section
+      initial={{ opacity: 0, y: 100 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1.7, ease: "easeInOut" }}
+      viewport={{ once: true }}
+
+      id="projects" className="relative bg-white py-12 px-6 lg:px-12 min-h-[50vh] flex flex-col items-center">
       {/* Go Back Button */}
       {choice !== null && (
         <div className="absolute top-4 left-4">
@@ -113,7 +119,7 @@ function Projects() {
         </motion.div>
       )}
       <div className="divider my-8"></div>
-    </section>
+    </motion.section>
   );
 }
 

@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
+import { delay, motion } from "framer-motion";
 import "@/styles/Hero.css";
 import LoopingIcons from "./LoopingIcons";
 
@@ -45,9 +45,9 @@ function Hero() {
 
         <div className="hero-btns-container mt-6 flex flex-col md:flex-row gap-4 md:gap-6 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -100 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 2 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.8 }}
             viewport={{ once: true }}
             className="hero-btn-container md:mt-10"
           >
@@ -59,9 +59,9 @@ function Hero() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 100 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 2 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.5 }}
             viewport={{ once: true }}
             className="hero-btn-container md:mt-10"
           >

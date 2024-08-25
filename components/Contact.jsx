@@ -24,7 +24,7 @@ Circle.displayName = "Circle";
 
 // Contact Component
 export function Contact() {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef(null);
   const div1Ref = useRef(null); // WhatsApp
   const div2Ref = useRef(null); // LinkedIn
@@ -33,14 +33,23 @@ export function Contact() {
 
   // Update screen size state on window resize
   useEffect(() => {
+    // Ensure this code runs only on the client-side
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
     };
 
-    window.addEventListener('resize', handleResize);
+    // Set initial state
+    if (typeof window !== "undefined") {
+      setIsMobile(window.innerWidth <= 768);
+      window.addEventListener('resize', handleResize);
+    }
 
     // Cleanup function
-    return () => window.removeEventListener('resize', handleResize);
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener('resize', handleResize);
+      }
+    };
   }, []);
 
   return (

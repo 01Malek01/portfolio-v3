@@ -1,52 +1,8 @@
-// import React from "react";
-// import "../styles/Skills.css";
-// import Slider from "./Slider";
-// import { motion } from "framer-motion";
-
-// function Skills() {
-
-//   return (
-//     <>
-//       <div
-
-//         className="skills-wrapper lg:min-h-screen p-8 mt-5"
-//       >
-//         <div
-//           className="skills-container mt-[5rem]">
-//           <header className="skills-title p-5">
-//             <motion.h1
-//               initial={{ opacity: 0, y: -100 }}
-//               whileInView={{ opacity: 1, y: 0 }}
-//               transition={{ duration: 1.5 }}
-//               className="text-6xl font-bold text-center c-text-secondary"
-//             >
-//               Skills
-//             </motion.h1>
-//           </header>
-//           <article className="skills bg-black bg-opacity-10 p-[2.5rem] rounded-lg shadow-lg">
-//             <motion.div
-//               initial={{ opacity: 0, y: -100 }}
-//               whileInView={{ opacity: 1, y: 0 }}
-//               transition={{ duration: 1.5, delay: 0.5 }}
-//               viewport={{ once: true }}
-//               className="skills-progress flex items-center justify-center"
-//             >
-//               <Slider />
-//             </motion.div>
-//           </article>
-//         </div>
-//       </div>
-//       <div className="divider bold "></div>
-//     </>
-//   );
-// }
-
-// export default Skills;
-
 
 
 import { cn } from "@/lib/utils";
 import Marquee from "@/components/magicui/marquee";
+import { motion } from "framer-motion";
 import {
   FaHtml5,
   FaCss3Alt,
@@ -154,7 +110,12 @@ const ReviewCard = ({
 
 export default function Skills() {
   return (
-    <div className="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl">
+    <motion.div
+      initial={{ opacity: 0, y: 100 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1.7, ease: "easeInOut" }}
+      viewport={{ once: true }}
+      className="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl">
       <h1 className="text-6xl font-bold text-center m-5"> Skills</h1>
       <Marquee pauseOnHover className="[--duration:35s] ">
         {skills.map((skill) => (
@@ -164,6 +125,6 @@ export default function Skills() {
 
       <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-white dark:from-background"></div>
       <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-white dark:from-background"></div>
-    </div>
+    </ motion.div>
   );
 }
