@@ -40,7 +40,9 @@ function MobileMenu() {
   return (
     <div className="lg:hidden relative">
       {/* Menu Button */}
-      <div
+      <motion.div
+        animate={{ rotate: menuOpen ? 90 : 0, opacity: menuOpen ? 0.7 : 1 }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
         tabIndex={0}
         role="button"
         className="btn btn-ghost btn-circle"
@@ -48,7 +50,7 @@ function MobileMenu() {
         aria-label="Toggle menu"
       >
         {menuOpen ? <X size={24} /> : <Menu size={24} />}
-      </div>
+      </motion.div>
 
       {/* Mobile Menu */}
       {menuOpen && (
@@ -58,7 +60,7 @@ function MobileMenu() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
-          className={`menu menu-sm dropdown-content bg-[#535353cd] rounded-box z-50 mt-3 w-52 p-4 shadow justify-center items-center gap-4 absolute left-0 top-full`}
+          className={`menu menu-sm dropdown-content bg-[#535353cd] rounded-box rounded-lg z-50 mt-3 w-52 p-4 shadow justify-center items-center gap-4 absolute left-0 top-full`}
         >
           {[
             { href: "#who-am-i", label: "Who am I?" },

@@ -1,15 +1,33 @@
 "use client";
-import React from "react";
-import { delay, motion } from "framer-motion";
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import "@/styles/Hero.css";
-import LoopingIcons from "./LoopingIcons";
+import WordPullUp from "./magicui/word-pull-up";
 
 function Hero() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    // Check window width when component mounts
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  // Debugging: Check isMobile state change
+  useEffect(() => {
+    console.log("isMobile:", isMobile);
+  }, [isMobile]);
+
   return (
     <section className="hero-wrapper relative md:h-[70vh] flex items-center justify-center bg-gradient-to-b from-blue-900 to-purple-900">
-      {/* <div className="absolute top-0 left-0 right-0 bottom-0 z-[2]">
-        <LoopingIcons slice={10} animation={'moveRandom'} />
-      </div> */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -17,28 +35,36 @@ function Hero() {
         className="hero-container glass z-[3] min-h-screen md:h-[80vh] relative flex flex-col items-center justify-center gap-4 px-4 py-6 md:py-12"
       >
         <motion.div
-          initial={{ translateY: -100, opacity: 0 }}
-          whileInView={{ translateY: 0, opacity: 1 }}
-          transition={{ duration: 1.5 }}
-          viewport={{ once: true }}
+          key={isMobile ? "mobile" : "desktop"} // Add key based on isMobile state
+          initial={{ scale: isMobile ? 1.2 : 2 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 2, ease: "easeInOut", delay: 2 }}
           className="hero-text mt-10 flex flex-col gap-4 justify-center items-center"
         >
-          <h1 className="text-4xl md:text-6xl font-extrabold text-white drop-shadow-lg">
-            Malek Mostafa
-          </h1>
-          <p className="text-lg md:text-2xl text-center text-slate-300">
+          <WordPullUp
+            words={"Malek Mostafa"}
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white drop-shadow-lg"
+          />
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1.5, delay: 2.5 }}
+            viewport={{ once: true }}
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-center text-slate-300"
+          >
             MERN Stack Developer
-          </p>
+          </motion.p>
         </motion.div>
 
         <motion.div
           initial={{ translateX: -100, opacity: 0 }}
           whileInView={{ translateX: 0, opacity: 1 }}
-          transition={{ duration: 1.5 }}
+          transition={{ duration: 1.5, delay: 3.5 }}
           viewport={{ once: true }}
           className="intro px-4 md:px-0"
         >
-          <p className="text-sm md:text-base text-center text-slate-100 mt-4 md:w-[60%] mx-auto leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-center text-slate-100 mt-4 md:w-[60%] mx-auto leading-relaxed">
             I'm a passionate and creative web developer with expertise in modern web technologies including React, Next.js, Node.js, and more. I love building responsive and user-friendly interfaces that provide great user experiences. Check out my projects to see my work!
           </p>
         </motion.div>
@@ -47,7 +73,7 @@ function Hero() {
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.8 }}
+            transition={{ duration: 1, delay: 3.5 }}
             viewport={{ once: true }}
             className="hero-btn-container md:mt-10"
           >
@@ -61,7 +87,7 @@ function Hero() {
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.5 }}
+            transition={{ duration: 1, delay: 3.9 }}
             viewport={{ once: true }}
             className="hero-btn-container md:mt-10"
           >

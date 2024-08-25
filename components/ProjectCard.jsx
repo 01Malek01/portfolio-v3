@@ -50,6 +50,7 @@ function ProjectCard({ projectTitle, projectDescription, projectImage, githubLin
         <Link href={liveLink}>
           <figure>
             <Image
+              priority
               src={projectImage}
               alt="project image"
               width={500}
@@ -60,6 +61,7 @@ function ProjectCard({ projectTitle, projectDescription, projectImage, githubLin
       ) : (
         <figure>
           <Image
+            priority
             src={projectImage}
             alt="project image"
             width={500}

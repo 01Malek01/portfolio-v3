@@ -27,7 +27,7 @@ function Header() {
 
         {/* Logo */}
         <div className="flex items-center">
-          <Image src="/logo.png" alt="logo" width={60} height={60} className="rounded-full border border-white" />
+          <Image priority src="/logo.png" alt="logo" width={60} height={60} className="rounded-full border border-white" />
         </div>
 
         {/* Navigation Links */}

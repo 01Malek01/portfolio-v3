@@ -1,0 +1,9 @@
+/* styles.css */
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px; /* Match the image height */
+  font-size: 1.5rem;
+  color: #ffcc00; /* Spinner color */
+}
