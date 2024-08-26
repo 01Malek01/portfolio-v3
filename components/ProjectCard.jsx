@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 
-function ProjectCard({ projectTitle, projectDescription, projectImage, githubLink, liveLink, styles }) {
+function ProjectCard({ projectTitle, projectDescription, projectImage, githubLink, githubLink2, liveLink, styles }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -42,7 +42,9 @@ function ProjectCard({ projectTitle, projectDescription, projectImage, githubLin
         <div className="divider"></div>
         <span className='text-orange-500'>Available Links :</span>
         <div className="card-actions m-5 flex flex-wrap justify-around">
-          {githubLink && <Link href={githubLink} className="link">Github Repo</Link>}
+          {githubLink && <Link href={githubLink} className="link">Github Repo Front-end</Link>}
+          {githubLink2 && <Link href={githubLink2} className="link">Github Repo Back-end</Link>}
+
           {liveLink && <Link href={liveLink} className="link">Live Preview</Link>}
         </div>
       </div>
@@ -62,6 +64,8 @@ function ProjectCard({ projectTitle, projectDescription, projectImage, githubLin
         <figure>
           <Image
             priority
+            placeholder="blur"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
             src={projectImage}
             alt="project image"
             width={500}

@@ -1,5 +1,14 @@
 export const fullProjects = [
   {
+    name: "Sheet To Chart",
+    description:
+      "A fullstack MERN app that allows users to upload key-value Excel sheets and transform them into stunning charts with ease. Not only can users store their files in a secure database for future use, but they can also export the visualizations as PDFs, add notes to each project, and even download their work later.",
+    image: "/projectsImages/sheettochart.png",
+    liveLink: "https://data-analysis-frontend-wine.vercel.app/",
+    githubLink: "https://github.com/01Malek01/data-analysis-frontend",
+    githubLink2: "https://github.com/01Malek01/data-analysis-backend",
+  },
+  {
     name: "Laptoshop",
     description:
       "A full-stack web application for a laptop shop featuring a Next.js, Tailwind CSS, and DaisyUI front end, and a Node.js, Express, and MongoDB back end. Key features include authentication, authorization, JWT, result limiting, and filtering. It showcases responsive design and CRUD operations for managing products, a shopping cart, security measures like encryption, input validation, and rate limiting. Future enhancements may include payment processing, real-time updates, and payment gateway integration.",
