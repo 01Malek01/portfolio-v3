@@ -1,4 +1,4 @@
-import React from 'react'
+timport React from 'react'
 import { fullProjects } from '@/utils/full-stack'
 import ProjectCard from './ProjectCard'
 function FullProjects({ styles }) {
