@@ -3,14 +3,15 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import "@/styles/Hero.css";
 import WordPullUp from "./magicui/word-pull-up";
+import { useCallback } from "react/cjs/react.production.min";
 
 function Hero() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => {
+    const handleResize = useCallback(() => {
       setIsMobile(window.innerWidth <= 768);
-    };
+    }, []);
 
     // Check window width when component mounts
     handleResize();
@@ -21,10 +22,7 @@ function Hero() {
     };
   }, []);
 
-  // Debugging: Check isMobile state change
-  useEffect(() => {
-    console.log("isMobile:", isMobile);
-  }, [isMobile]);
+
 
   return (
     <section className="hero-wrapper relative md:h-[70vh] flex items-center justify-center bg-gradient-to-b from-blue-900 to-purple-900">

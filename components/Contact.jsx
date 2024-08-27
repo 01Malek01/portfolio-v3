@@ -1,24 +1,22 @@
-"use client";
+'use client';
 
 import React, { forwardRef, useRef, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import { FaWhatsapp, FaLinkedin, FaEnvelope } from "react-icons/fa"; // Importing WhatsApp, LinkedIn, and Gmail icons
+import { FaWhatsapp, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 // Circle Component
-const Circle = forwardRef(({ className, children }, ref) => {
-  return (
-    <div
-      ref={ref}
-      className={cn(
-        "z-10 flex h-24 w-24 items-center justify-center rounded-full border-2 bg-white p-3 shadow-xl transition-transform transform hover:scale-110",
-        className
-      )}
-    >
-      {children}
-    </div>
-  );
-});
+const Circle = forwardRef(({ className, children }, ref) => (
+  <div
+    ref={ref}
+    className={cn(
+      "z-10 flex h-24 w-24 items-center justify-center rounded-full border-2 bg-white p-3 shadow-xl transition-transform transform hover:scale-110",
+      className
+    )}
+  >
+    {children}
+  </div>
+));
 
 Circle.displayName = "Circle";
 
@@ -26,29 +24,20 @@ Circle.displayName = "Circle";
 export function Contact() {
   const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef(null);
-  const div1Ref = useRef(null); // WhatsApp
-  const div2Ref = useRef(null); // LinkedIn
-  const div3Ref = useRef(null); // Gmail
-  const div4Ref = useRef(null); // Central circle
 
   // Update screen size state on window resize
   useEffect(() => {
-    // Ensure this code runs only on the client-side
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
     };
 
-    // Set initial state
-    if (typeof window !== "undefined") {
-      setIsMobile(window.innerWidth <= 768);
-      window.addEventListener('resize', handleResize);
-    }
+    // Set initial state and add resize event listener
+    handleResize();
+    window.addEventListener('resize', handleResize);
 
     // Cleanup function
     return () => {
-      if (typeof window !== "undefined") {
-        window.removeEventListener('resize', handleResize);
-      }
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
@@ -59,7 +48,7 @@ export function Contact() {
     >
       {/* Central Circle */}
       <div className="relative flex items-center justify-center">
-        <div ref={div4Ref} className="p-2 m-3 z-20">
+        <div className="p-2 m-3 z-20">
           <span className="text-4xl font-extrabold text-white drop-shadow-lg ">
             Contact Me
           </span>
@@ -81,7 +70,7 @@ export function Contact() {
               <span className="font-extrabold text-white drop-shadow-lg text-center">
                 01125485384
               </span>
-              <Circle ref={div1Ref}>
+              <Circle>
                 <FaWhatsapp className="text-[#25d366] text-4xl" />
               </Circle>
             </div>
@@ -99,7 +88,7 @@ export function Contact() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Circle ref={div2Ref}>
+            <Circle>
               <FaLinkedin className="text-[#0e76a8] text-4xl" />
             </Circle>
           </a>
@@ -112,7 +101,7 @@ export function Contact() {
           className="absolute -bottom-24 md:-right-32 cursor-pointer"
         >
           <a href="mailto:malekmostafa0051@gmail.com">
-            <Circle ref={div3Ref}>
+            <Circle>
               <FaEnvelope className="text-black text-4xl" />
             </Circle>
           </a>
