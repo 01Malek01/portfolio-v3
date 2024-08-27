@@ -3,26 +3,37 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import "@/styles/Hero.css";
 import WordPullUp from "./magicui/word-pull-up";
-import { useCallback } from "react/cjs/react.production.min";
 
 function Hero() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const handleResize = useCallback(() => {
-      setIsMobile(window.innerWidth <= 768);
-    }, []);
+    // Check if 'window' is defined to ensure code only runs in the browser
+    const handleResize = () => {
+      if (typeof window !== "undefined") {
+        // Avoid unnecessary state updates by checking if the state should change
+        const mobile = window.innerWidth <= 768;
+        if (mobile !== isMobile) {
+          setIsMobile(mobile);
+        }
+      }
+    };
 
-    // Check window width when component mounts
+    // Perform the initial check
     handleResize();
 
-    window.addEventListener("resize", handleResize);
+    // Add the event listener
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", handleResize);
+    }
+
+    // Cleanup event listener on component unmount
     return () => {
-      window.removeEventListener("resize", handleResize);
+      if (typeof window !== "undefined") {
+        window.removeEventListener("resize", handleResize);
+      }
     };
-  }, []);
-
-
+  }, [isMobile]);
 
   return (
     <section className="hero-wrapper relative md:h-[70vh] flex items-center justify-center bg-gradient-to-b from-blue-900 to-purple-900">
@@ -33,7 +44,7 @@ function Hero() {
         className="hero-container glass z-[3] min-h-screen md:h-[80vh] relative flex flex-col items-center justify-center gap-4 px-4 py-6 md:py-12"
       >
         <motion.div
-          key={isMobile ? "mobile" : "desktop"} // Add key based on isMobile state
+          key={isMobile ? "mobile" : "desktop"}
           initial={{ scale: isMobile ? 1.2 : 2 }}
           animate={{ scale: 1 }}
           transition={{ duration: 2, ease: "easeInOut", delay: 2 }}
@@ -75,7 +86,7 @@ function Hero() {
             viewport={{ once: true }}
             className="hero-btn-container md:mt-10"
           >
-            <a href="/Resume.pdf" download="/Resume.pdf">
+            <a href="/Resume.pdf" download>
               <button className="c-button bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">
                 Download Resume
               </button>

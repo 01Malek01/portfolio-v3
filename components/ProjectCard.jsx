@@ -32,7 +32,8 @@ function ProjectCard({ projectTitle, projectDescription, projectImage, githubLin
     <div className={`${styles} bg-base-100 md:w-96 w-72 shadow-xl md:hover:scale-110 hover:z-10 transition duration-300 ease-in-out`}>
       <div className="card-body">
         <h2 className="card-title text-semibold text-2xl mb-2">{projectTitle}</h2>
-        <p className='text-sm md:text-lg'>{renderDescription()}</p>
+
+        <p className='text-sm md:text-lg '>{renderDescription()}</p>
         {projectDescription.length > 100 && (
           <span className="text-blue-500 underline cursor-pointer" onClick={toggleExpand}>
             {isExpanded ? 'Read Less' : 'Read More'}
@@ -43,24 +44,35 @@ function ProjectCard({ projectTitle, projectDescription, projectImage, githubLin
         <div className="card-actions m-5 flex flex-wrap justify-around">
           {githubLink && <Link href={githubLink} className="link">Github Repo Front-end</Link>}
           {githubLink2 && <Link href={githubLink2} className="link">Github Repo Back-end</Link>}
+
           {liveLink && <Link href={liveLink} className="link">Live Preview</Link>}
         </div>
       </div>
-      <figure>
-        <Link href={liveLink || '#'}>
+      {liveLink ? (
+        <Link href={liveLink}>
+          <figure>
+            <Image
+              priority
+              src={projectImage}
+              alt="project image"
+              width={500}
+              height={500}
+            />
+          </figure>
+        </Link>
+      ) : (
+        <figure>
           <Image
+            priority
+            placeholder="blur"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
             src={projectImage}
             alt="project image"
             width={500}
-            height={300} // Adjust height for aspect ratio if needed
-            layout="responsive" // Ensure the image is responsive
-            priority // Optional: Use for critical images
-            placeholder="blur" // Use for a placeholder
-            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-            loading="lazy" // Enable lazy loading
+            height={500}
           />
-        </Link>
-      </figure>
+        </figure>
+      )}
     </div>
   );
 }

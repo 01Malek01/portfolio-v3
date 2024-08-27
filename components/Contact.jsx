@@ -21,7 +21,7 @@ const Circle = forwardRef(({ className, children }, ref) => (
 Circle.displayName = "Circle";
 
 // Contact Component
-export function Contact() {
+export default function Contact() {
   const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef(null);
 
