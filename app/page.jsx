@@ -2,7 +2,7 @@
 import { useState, useEffect, Suspense, lazy } from 'react';
 import { IoMdRocket } from 'react-icons/io';
 import { motion } from 'framer-motion';
-import { useCallback } from 'react';
+import { throttle } from 'lodash';
 // Lazy load components to reduce initial load time
 const Header = lazy(() => import('@/components/Header'));
 const Hero = lazy(() => import('@/components/Hero'));
@@ -16,20 +16,19 @@ export default function Home() {
   const [showScrollToTop, setShowScrollToTop] = useState(false);
 
   useEffect(() => {
-    const handleScroll = useCallback(() => {
+    const handleScroll = throttle(() => {
       if (window.scrollY > window.innerHeight) {
         setShowScrollToTop(true);
       } else {
         setShowScrollToTop(false);
       }
-    }, [setShowScrollToTop]);
-
+    }, 200);
     window.addEventListener('scroll', handleScroll);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, 200);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
