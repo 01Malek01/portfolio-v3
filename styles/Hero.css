@@ -3,19 +3,13 @@
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background-image: url("/side-shot-code-editor-using-react-js.jpg");
-  background-size: contain;
+  background-position: center center;
+  background-image: url("/side-shot-code-editor-using-react-js.webp");
+  background-size: cover;
   background-blend-mode: multiply;
-  background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity level */
+  background-color: rgba(0, 0, 0, 0.5);
+  background-attachment: fixed;
 }
-
-.hero-wrapper::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0.6;
-  z-index: 0;
+.hero-wrapper {
+  backdrop-filter: brightness(0.6);
 }

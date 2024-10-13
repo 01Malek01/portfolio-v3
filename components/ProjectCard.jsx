@@ -42,7 +42,7 @@ function ProjectCard({ projectTitle, projectDescription, projectImage, githubLin
         <div className="divider"></div>
         <span className='text-orange-500'>Available Links :</span>
         <div className="card-actions m-5 flex flex-wrap justify-around">
-          {githubLink && <Link href={githubLink} className="link">Github Repo Front-end</Link>}
+          {githubLink && <Link href={githubLink} className="link">{githubLink2 ? 'Github Repo Front-end' : ' Github Repo'}</Link>}
           {githubLink2 && <Link href={githubLink2} className="link">Github Repo Back-end</Link>}
 
           {liveLink && <Link href={liveLink} className="link">Live Preview</Link>}
