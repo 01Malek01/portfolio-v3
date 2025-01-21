@@ -9,14 +9,23 @@ export const fullProjects = [
     githubLink2: "https://github.com/01Malek01/data-analysis-backend",
   },
   {
-    name: "Laptoshop",
+    name: "Donation App",
     description:
-      "A full-stack web application for a laptop shop featuring a Next.js, Tailwind CSS, and DaisyUI front end, and a Node.js, Express, and MongoDB back end. Key features include authentication, authorization, JWT, result limiting, and filtering. It showcases responsive design and CRUD operations for managing products, a shopping cart, security measures like encryption, input validation, and rate limiting. Future enhancements may include payment processing, real-time updates, and payment gateway integration.",
-    image: "/projectsImages/laptoshop.webp",
-    liveLink: "https://laptoshop-front-end.vercel.app/",
-    githubLink: "https://github.com/01Malek01/Laptoshop-FrontEnd",
-    githubLink2: "https://github.com/01Malek01/Laptoshop-BackEnd",
+      "A fullstack donation app built with Node.js, Express, and vanilla HTML, CSS, and JavaScript. It integrates PayPal for secure payment processing and uses Nodemailer to send confirmation emails after successful donations. The app provides a seamless experience for users to contribute to causes they care about, with real-time payment confirmation and email notifications.",
+    image: "/projectsImages/donation-app.webp",
+    liveLink: "https://donate-together.onrender.com/",
+    githubLink: "https://github.com/01Malek01/Donation-App",
   },
+  {
+    name: "E-Commerce App",
+    description:
+      "A responsive e-commerce application built with modern web technologies. It features PayPal integration for secure payments, product browsing, filtering, and searching. Users can track their order history and manage their profiles. Authentication is handled using SuperTokens SDKs, ensuring a secure and seamless user experience. The app is designed to be fully responsive, providing a smooth shopping experience across all devices.",
+    image: "/projectsImages/ecommerce-app.webp",
+    liveLink: "https://uneeq-commerce-frontend.onrender.com/",
+    githubLink: "https://github.com/01Malek01/E-commerce-frontend",
+    githubLink2: "https://github.com/01Malek01/E-commerce-backend",
+  },
+
   {
     name: "MEats",
     description:
@@ -25,6 +34,15 @@ export const fullProjects = [
     liveLink: "https://food-ordering-app-frontend-mstf.onrender.com",
     githubLink: "https://github.com/01Malek01/food-ordering-app-frontend",
     githubLink2: "https://github.com/01Malek01/food-ordering-app-backend",
+  },
+  {
+    name: "Laptoshop",
+    description:
+      "A full-stack web application for a laptop shop featuring a Next.js, Tailwind CSS, and DaisyUI front end, and a Node.js, Express, and MongoDB back end. Key features include authentication, authorization, JWT, result limiting, and filtering. It showcases responsive design and CRUD operations for managing products, a shopping cart, security measures like encryption, input validation, and rate limiting. Future enhancements may include payment processing, real-time updates, and payment gateway integration.",
+    image: "/projectsImages/laptoshop.webp",
+    liveLink: "https://laptoshop-front-end.vercel.app/",
+    githubLink: "https://github.com/01Malek01/Laptoshop-FrontEnd",
+    githubLink2: "https://github.com/01Malek01/Laptoshop-BackEnd",
   },
   {
     name: "ChatWme",
