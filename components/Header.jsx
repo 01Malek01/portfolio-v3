@@ -20,7 +20,7 @@ function Header() {
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
-          className="flex items-center sm:hidden"
+          className=" items-center hidden lg:flex"
         >
           <Image
             priority
