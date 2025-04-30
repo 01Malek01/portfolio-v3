@@ -1,112 +1,129 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import "@/styles/Hero.css";
 import WordPullUp from "./magicui/word-pull-up";
+import { FiCode, FiServer, FiCpu, FiDownload, FiArrowRight } from "react-icons/fi";
+import Link from "next/link";
 
 function Hero() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Check if 'window' is defined to ensure code only runs in the browser
-    const handleResize = () => {
-      if (typeof window !== "undefined") {
-        // Avoid unnecessary state updates by checking if the state should change
-        const mobile = window.innerWidth <= 768;
-        if (mobile !== isMobile) {
-          setIsMobile(mobile);
-        }
-      }
-    };
-
-    // Perform the initial check
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
     handleResize();
-
-    // Add the event listener
-    if (typeof window !== "undefined") {
-      window.addEventListener("resize", handleResize);
-    }
-
-    // Cleanup event listener on component unmount
-    return () => {
-      if (typeof window !== "undefined") {
-        window.removeEventListener("resize", handleResize);
-      }
-    };
-  }, [isMobile]);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
-    <section className="hero-wrapper relative md:h-[70vh] flex items-center justify-center bg-gradient-to-b from-blue-900 to-purple-900">
+    <section className="relative min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden px-4 sm:px-6 lg:px-8">
       <motion.div
         initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 2.5 }}
-        className="hero-container glass z-[3] min-h-screen md:h-[80vh] relative flex flex-col items-center justify-center gap-4 px-4 py-6 md:py-12"
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.5 }}
+        className="relative z-10 text-center w-full"
       >
-        <motion.div
-          key={isMobile ? "mobile" : "desktop"}
-          initial={{ scale: isMobile ? 1.2 : 2 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 2, ease: "easeInOut", delay: 2 }}
-          className="hero-text mt-10 flex flex-col gap-4 justify-center items-center"
-        >
-          <WordPullUp
-            words={"Malek Mostafa"}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white drop-shadow-lg"
-          />
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1.5, delay: 2.5 }}
-            viewport={{ once: true }}
-            className="text-base sm:text-lg md:text-xl lg:text-2xl text-center text-slate-300"
-          >
-            MERN Stack Developer
-          </motion.p>
-        </motion.div>
-
-        <motion.div
-          initial={{ translateX: -100, opacity: 0 }}
-          whileInView={{ translateX: 0, opacity: 1 }}
-          transition={{ duration: 1.5, delay: 3.5 }}
-          viewport={{ once: true }}
-          className="intro px-4 md:px-0"
-        >
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-center text-slate-100 mt-4 md:w-[60%] mx-auto leading-relaxed">
-            I'm a passionate and creative web developer with expertise in modern web technologies including React, Next.js, Node.js, and more. I love building responsive and user-friendly interfaces that provide great user experiences. Check out my projects to see my work!
-          </p>
-        </motion.div>
-
-        <div className="hero-btns-container mt-6 flex flex-col md:flex-row gap-4 md:gap-6 items-center">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 3.5 }}
-            viewport={{ once: true }}
-            className="hero-btn-container md:mt-10"
-          >
-            <a href="/Resume.pdf" download>
-              <button className="c-button bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">
-                Download Resume
-              </button>
-            </a>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 3.9 }}
-            viewport={{ once: true }}
-            className="hero-btn-container md:mt-10"
-          >
-            <a href="#projects">
-              <button className="c-button bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-6 rounded-lg shadow-lg transition duration-300 transform hover:scale-105">
-                Go to Projects
-              </button>
-            </a>
-          </motion.div>
+        {/* Icons */}
+        <div className="mb-8 flex justify-center gap-4 flex-wrap">
+          {[FiCode, FiServer, FiCpu].map((Icon, i) => (
+            <motion.div
+              key={i}
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: i * 0.2 + 0.5 }}
+              className="p-4 rounded-full bg-slate-700/30 backdrop-blur-sm hover:bg-slate-600/40 transition-colors"
+            >
+              <Icon className="w-6 h-6 sm:w-8 sm:h-8 text-purple-400" />
+            </motion.div>
+          ))}
         </div>
+
+        {/* Name */}
+        <WordPullUp
+          words={"Malek Mostafa"}
+          className="text-4xl sm:text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-4"
+        />
+
+        {/* Subtitle */}
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 1.2 }}
+          className="flex flex-wrap justify-center items-center gap-4 mb-8"
+        >
+          <div className="h-px bg-gradient-to-r from-transparent via-purple-400 to-transparent md:w-24 w-0" />
+          <span className="text-lg sm:text-xl text-purple-200 font-medium">Full-Stack Architect</span>
+          <div className="h-px bg-gradient-to-r from-transparent via-purple-400 to-transparent md:w-24 w-0" />
+        </motion.div>
+
+        {/* Description */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5 }}
+          className="text-base sm:text-lg md:text-xl text-slate-300 max-w-3xl mx-auto mb-12 leading-relaxed px-2"
+        >
+          Crafting scalable solutions with{" "}
+          <span className="text-purple-400 font-semibold">React</span>,{" "}
+          <span className="text-emerald-400 font-semibold">Node.js</span>, and{" "}
+          <span className="text-cyan-400 font-semibold">MongoDB</span>.{" "}
+          Specializing in high-performance web applications with modern architecture.
+        </motion.p>
+
+        {/* Buttons */}
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ type: "spring", stiffness: 260, damping: 20 }}
+          className="flex flex-col md:flex-row justify-center gap-6"
+        >
+          <a
+            href="/malek-mostafa-mern-dev.pdf"
+            download
+            className="flex items-center justify-center gap-2 px-8 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 transition-all group"
+          >
+            <FiDownload className="w-5 h-5 text-white" />
+            <span className="text-white font-semibold">Download CV</span>
+          </a>
+
+          <a
+            href="#projects"
+            className="flex items-center justify-center gap-2 px-8 py-3 rounded-lg border-2 border-purple-400 hover:bg-purple-400/10 transition-colors group"
+          >
+            <span className="text-purple-400 font-semibold">View Projects</span>
+            <FiArrowRight className="w-5 h-5 text-purple-400 transition-transform group-hover:translate-x-1" />
+          </a>
+        </motion.div>
+
+        {/* Stats */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2 }}
+          className="mt-16 flex flex-wrap gap-8 sm:gap-16 justify-center items-center max-w-4xl mx-auto opacity-90"
+        >
+          {[
+            { value: "15+", label: "Projects", color: "text-blue-400" },
+            { value: "98%", label: "Satisfaction", color: "text-purple-400" },
+          ].map((stat, i) => (
+            <div key={i} className="text-center">
+              <div className={`text-3xl sm:text-4xl font-bold ${stat.color}`}>{stat.value}</div>
+              <div className="text-sm sm:text-base text-slate-400 mt-1">{stat.label}</div>
+            </div>
+          ))}
+        </motion.div>
+      </motion.div>
+
+      {/* Scroll Down Button */}
+      <motion.div
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 2.5 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+      >
+        <Link href="#who-am-i" className="text-purple-400 hover:text-purple-500 transition-colors">
+          <div className="animate-bounce w-6 h-6 border-4 border-purple-400 rounded-full" />
+        </Link>
       </motion.div>
     </section>
   );

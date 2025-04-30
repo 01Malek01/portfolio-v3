@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect } from "react";
+import React from "react";
 import { BsGithub, BsLinkedin } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
 import Link from "next/link";
@@ -8,63 +8,56 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 function Header() {
-  useEffect(() => {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
-        });
-      });
-    });
-  }, []);
-
   return (
-    <header className="bg-gray-800 text-white shadow-md fixed top-0 w-full z-50">
-      <div className="container mx-auto flex items-center justify-between h-16 px-6 lg:px-12">
+    <header className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border-b border-slate-800/80 backdrop-blur-sm fixed top-0 w-full  overflow-hidden z-50">
+      <div className="container mx-auto flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8">
         {/* Mobile Menu */}
-        <MobileMenu />
-
-        {/* Logo */}
-        <div className="flex items-center">
-          <Image priority src="/logo.png" alt="logo" width={60} height={60} className="rounded-full border border-white" />
+        <div className="flex items-center lg:hidden">
+          <MobileMenu />
         </div>
 
-        {/* Navigation Links */}
-        <nav className="hidden lg:flex flex-grow justify-center gap-8">
-          {[
-            { href: '#who-am-i', label: 'Who am I?' },
-            { href: '#skills', label: 'Skills' },
-            { href: '#projects', label: 'Projects' },
-            { href: '#contact', label: 'Contact me' }
-          ].map((link, index) => (
-            <Link key={link.href} href={link.href} className="relative group">
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                className="font-semibold text-gray-300 hover:text-white transition-colors duration-300"
-              >
-                {link.label}
-                <span className="absolute bottom-0 left-0 w-full h-1 bg-purple-700 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-              </motion.div>
-            </Link>
-          ))}
-        </nav>
+        {/* Logo */}
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          className="flex items-center sm:hidden"
+        >
+          <Image
+            priority
+            src="/logo.png"
+            alt="logo"
+            width={48}
+            height={48}
+            className="rounded-full border-2 border-slate-700 hover:border-slate-600 transition-colors"
+          />
+        </motion.div>
+
+
 
         {/* Social Links */}
-        <div className="flex gap-6">
+        <div className="flex items-center gap-3 sm:gap-4 md:gap-6">
           {[
-            { href: 'https://github.com/01Malek01', icon: <BsGithub className="text-xl hover:text-purple-700 transition-colors duration-300" /> },
-            { href: 'https://www.linkedin.com/in/malek-mostafa-salah-026362222/', icon: <BsLinkedin className="text-xl hover:text-purple-700 transition-colors duration-300" /> },
-            { href: 'mailto:malekmostafa0051@gmail.com', icon: <HiOutlineMail className="text-xl hover:text-purple-700 transition-colors duration-300" /> }
-          ].map((link) => (
-            <Link key={link.href} href={link.href} className="hover:scale-110 transition-transform duration-300">
+            { href: 'https://github.com/01Malek01', icon: <BsGithub /> },
+            { href: 'https://www.linkedin.com/in/malek-mostafa-web-dev/', icon: <BsLinkedin /> },
+            { href: 'mailto:malekmostafa0051@gmail.com', icon: <HiOutlineMail /> }
+          ].map((link, index) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              target="_blank"
+              className="p-2 rounded-lg hover:bg-slate-800/40 backdrop-blur transition-all"
+            >
               <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-                className="text-gray-300"
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.15,
+                  type: "spring",
+                  stiffness: 260,
+                  damping: 20
+                }}
+                className="text-slate-300 hover:text-purple-400 text-xl transition-colors"
               >
                 {link.icon}
               </motion.div>

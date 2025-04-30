@@ -4,9 +4,8 @@ import FrontProject from './FrontProjects';
 import FullProjects from './FullProjects';
 import { motion } from 'framer-motion';
 import { RiArrowGoBackFill } from "react-icons/ri";
-import { AnimatedSubscribeButton } from './magicui/animated-subscribe-button';
+import { FiCode, FiServer } from "react-icons/fi";
 import { ChevronRightIcon } from 'lucide-react';
-import { Button } from './ui/button';
 
 function Projects() {
   const [choice, setChoice] = useState(null);
@@ -15,28 +14,30 @@ function Projects() {
     setChoice(choice);
   };
 
-  useEffect(() => {
-    console.log(choice);
-  }, [choice]);
-
   return (
     <motion.section
       initial={{ opacity: 0, y: 100 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1.7, ease: "easeInOut" }}
+      transition={{ duration: 1.5, ease: "easeInOut" }}
       viewport={{ once: true }}
-
-      id="projects" className="relative bg-white py-12 px-6 lg:px-12 min-h-[50vh] flex flex-col items-center">
+      id="projects"
+      className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-20 px-4 md:px-8 min-h-screen flex flex-col items-center"
+    >
       {/* Go Back Button */}
       {choice !== null && (
-        <div className="absolute top-4 left-4">
-          <Button
-            className="bg-black text-white hover:bg-gray-800 transition-colors duration-300"
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="absolute top-6 left-6 z-20"
+        >
+          <button
             onClick={() => setChoice(null)}
+            className="flex items-center gap-2 px-4 py-2 rounded-lg border border-purple-400/30 bg-slate-900/30 backdrop-blur-sm text-purple-400 hover:bg-purple-400/10 transition-colors"
           >
-            Go Back <RiArrowGoBackFill className="ml-2" />
-          </Button>
-        </div>
+            <RiArrowGoBackFill className="w-5 h-5" />
+            <span className="text-sm font-medium">Back</span>
+          </button>
+        </motion.div>
       )}
 
       {/* Main Content */}
@@ -44,81 +45,100 @@ function Projects() {
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 1.7, ease: "easeInOut" }}
+          transition={{ delay: 0.3 }}
           viewport={{ once: true }}
-          className="flex flex-col items-center justify-center"
+          className="flex flex-col items-center justify-center text-center"
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Projects</h1>
-          <div className="text-center mb-8">
-            <h2 className="text-2xl md:text-3xl text-gray-900 font-semibold mb-2">What Would You Like To See?</h2>
-            <p className="text-lg text-gray-600">Click to show the projects</p>
-          </div>
-          <div className="flex flex-col md:flex-row gap-6 md:gap-8">
-            <div onClick={() => handleChoice("full-stack")}
-            >
+          <motion.h1
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-8"
+          >
+            Project Portfolio
+          </motion.h1>
 
-              <AnimatedSubscribeButton
-                onClick={() => handleChoice("full-stack")}
-                buttonColor="#FFD700"
-                buttonTextColor="black"
-                initialText={
-                  <span className="group inline-flex items-center text-lg md:text-xl font-medium">
-                    Full Stack Projects{" "}
-                    <ChevronRightIcon className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-                  </span>
-                }
-                changeText={
-                  <span className="group inline-flex items-center text-lg md:text-xl font-medium">
-                    Full Stack Projects{" "}
-                    <ChevronRightIcon className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-                  </span>
-                }
-              />
-            </div>
-            <div onClick={() => handleChoice("front-end")}
-            >
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+            className="mb-12"
+          >
+            <h2 className="text-2xl md:text-3xl text-slate-200 font-medium mb-4">
+              Explore My Development Work
+            </h2>
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+              Select a category to view detailed case studies and live demonstrations
+            </p>
+          </motion.div>
 
-              <AnimatedSubscribeButton
-                buttonColor="black"
-                buttonTextColor="white"
-                initialText={
-                  <span className="group inline-flex items-center text-lg md:text-xl font-medium">
-                    Front-End Projects{" "}
-                    <ChevronRightIcon className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-                  </span>
-                }
-                changeText={
-                  <span className="group inline-flex items-center text-lg md:text-xl font-medium">
-                    Front-End Projects{" "}
-                    <ChevronRightIcon className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-                  </span>
-                }
-              />
-            </div>
-          </div>
+          <motion.div
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
+            transition={{ type: "spring", stiffness: 260, damping: 20 }}
+            className="flex flex-col md:flex-row gap-6 md:gap-8"
+          >
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="group relative overflow-hidden rounded-2xl bg-slate-900/30 backdrop-blur-sm border border-slate-800 cursor-pointer"
+              onClick={() => handleChoice("full-stack")}
+            >
+              <div className="p-8 md:p-12 flex flex-col items-center">
+                <FiServer className="w-12 h-12 text-purple-400 mb-6" />
+                <h3 className="text-2xl font-semibold text-slate-200 mb-4">
+                  Full Stack Solutions
+                </h3>
+                <p className="text-slate-400 text-center mb-6">
+                  End-to-end applications with modern architecture
+                </p>
+                <div className="flex items-center text-purple-400 group-hover:text-blue-400 transition-colors">
+                  <span className="mr-2">View Projects</span>
+                  <ChevronRightIcon className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="group relative overflow-hidden rounded-2xl bg-slate-900/30 backdrop-blur-sm border border-slate-800 cursor-pointer"
+              onClick={() => handleChoice("front-end")}
+            >
+              <div className="p-8 md:p-12 flex flex-col items-center">
+                <FiCode className="w-12 h-12 text-blue-400 mb-6" />
+                <h3 className="text-2xl font-semibold text-slate-200 mb-4">
+                  Front-End Experiences
+                </h3>
+                <p className="text-slate-400 text-center mb-6">
+                  Interactive interfaces with cutting-edge UX
+                </p>
+                <div className="flex items-center text-blue-400 group-hover:text-purple-400 transition-colors">
+                  <span className="mr-2">View Projects</span>
+                  <ChevronRightIcon className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
         </motion.div>
       ) : choice === "front-end" ? (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1.5 }}
-          viewport={{ once: true }}
-          className="flex justify-center items-center mt-8"
+          transition={{ duration: 1 }}
+          className="w-full mt-8"
         >
-          <FrontProject styles="card-front" />
+          <FrontProject />
         </motion.div>
       ) : (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1.5 }}
-          viewport={{ once: true }}
-          className="flex justify-center items-center mt-8"
+          transition={{ duration: 1 }}
+          className="w-full mt-8"
         >
-          <FullProjects styles="card-full" />
+          <FullProjects />
         </motion.div>
       )}
-      <div className="divider my-8"></div>
+
+      <div className="w-full max-w-4xl mx-auto h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent my-16" />
     </motion.section>
   );
 }

@@ -1,25 +1,11 @@
 import Link from 'next/link';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { FiGithub, FiExternalLink, FiCode } from 'react-icons/fi';
 
-function ProjectCard({ projectTitle, projectDescription, projectImage, githubLink, githubLink2, liveLink, styles }) {
+function ProjectCard({ projectTitle, projectDescription, projectImage, githubLink, githubLink2, liveLink }) {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    handleResize(); // Check initial screen size
-    window.addEventListener('resize', handleResize);
-
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  const toggleExpand = () => {
-    setIsExpanded(!isExpanded);
-  };
 
   const renderDescription = () => {
     if (isExpanded || projectDescription.length <= 100) {
@@ -29,51 +15,90 @@ function ProjectCard({ projectTitle, projectDescription, projectImage, githubLin
   };
 
   return (
-    <div className={`${styles} bg-base-100 md:w-96 w-72 shadow-xl md:hover:scale-110 hover:z-10 transition duration-300 ease-in-out`}>
-      <div className="card-body">
-        <h2 className="card-title text-semibold text-2xl mb-2">{projectTitle}</h2>
-
-        <p className='text-sm md:text-lg '>{renderDescription()}</p>
-        {projectDescription.length > 100 && (
-          <span className="text-blue-500 underline cursor-pointer" onClick={toggleExpand}>
-            {isExpanded ? 'Read Less' : 'Read More'}
-          </span>
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "0px 0px -100px 0px" }}
+      whileHover={{ scale: 1.03 }}
+      className="relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/30 backdrop-blur-sm"
+    >
+      <div className="h-48 relative overflow-hidden">
+        {liveLink ? (
+          <Link href={liveLink}>
+            <Image
+              src={projectImage}
+              alt={projectTitle}
+              fill
+              className="object-cover hover:scale-105 transition-transform duration-300"
+            />
+          </Link>
+        ) : (
+          <Image
+            src={projectImage}
+            alt={projectTitle}
+            fill
+            className="object-cover"
+          />
         )}
-        <div className="divider"></div>
-        <span className='text-orange-500'>Available Links :</span>
-        <div className="card-actions m-5 flex flex-wrap justify-around">
-          {githubLink && <Link href={githubLink} className="link">{githubLink2 ? 'Github Repo Front-end' : ' Github Repo'}</Link>}
-          {githubLink2 && <Link href={githubLink2} className="link">Github Repo Back-end</Link>}
+      </div>
 
-          {liveLink && <Link href={liveLink} className="link">Live Preview</Link>}
+      <div className="p-6 space-y-4">
+        <h3 className="text-xl font-semibold text-slate-200">{projectTitle}</h3>
+
+        <div className="space-y-2">
+          <p className="text-slate-400 leading-relaxed">
+            {renderDescription()}
+          </p>
+          {projectDescription.length > 100 && (
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="text-purple-400 hover:text-blue-400 transition-colors text-sm"
+            >
+              {isExpanded ? 'Show less' : 'Read more'}
+            </button>
+          )}
+        </div>
+
+        <div className="flex items-center justify-between mt-4">
+          <div className="flex gap-3">
+            {githubLink && (
+              <a
+                href={githubLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg bg-slate-800/50 hover:bg-slate-700/40 transition-colors"
+              >
+                <FiGithub className="w-5 h-5 text-purple-400" />
+              </a>
+            )}
+            {liveLink && (
+              <a
+                href={liveLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg bg-slate-800/50 hover:bg-slate-700/40 transition-colors"
+              >
+                <FiExternalLink className="w-5 h-5 text-blue-400" />
+              </a>
+            )}
+          </div>
+
+          {githubLink2 && (
+            <a
+              href={githubLink2}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-sm text-slate-400 hover:text-purple-400 transition-colors"
+            >
+              <FiCode className="w-4 h-4" />
+              <span>Backend Code</span>
+            </a>
+          )}
         </div>
       </div>
-      {liveLink ? (
-        <Link href={liveLink}>
-          <figure>
-            <Image
-              priority
-              src={projectImage}
-              alt="project image"
-              width={500}
-              height={500}
-            />
-          </figure>
-        </Link>
-      ) : (
-        <figure>
-          <Image
-            priority
-            placeholder="blur"
-            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
-            src={projectImage}
-            alt="project image"
-            width={500}
-            height={500}
-          />
-        </figure>
-      )}
-    </div>
+
+      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-slate-900/80 to-slate-800/80" />
+    </motion.div>
   );
 }
 

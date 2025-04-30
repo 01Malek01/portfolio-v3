@@ -13,7 +13,7 @@ function FullProjects({ styles }) {
           githubLink={project?.githubLink}
           githubLink2={project?.githubLink2}
           liveLink={project?.liveLink}
-          styles = {styles}
+          styles={styles}
         />
       ))}
     </div>

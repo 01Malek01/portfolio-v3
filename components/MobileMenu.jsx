@@ -1,87 +1,102 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { BsGithub, BsLinkedin } from "react-icons/bs";
+import { HiOutlineMail } from "react-icons/hi";
 
 function MobileMenu() {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
 
-  // Close menu on outside click
-  useEffect(() => {
-    const handleOutsideClick = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setMenuOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleOutsideClick);
-
-    return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
-    };
-  }, []);
-
-  // Smooth scroll for anchor links
-  useEffect(() => {
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener("click", function (e) {
-        e.preventDefault();
-
-        document.querySelector(this.getAttribute("href")).scrollIntoView({
-          behavior: "smooth",
-        });
-
-        setMenuOpen(false); // Close menu on link click
-      });
-    });
-  }, []);
-
   return (
     <div className="lg:hidden relative">
-      {/* Menu Button */}
-      <motion.div
-        animate={{ rotate: menuOpen ? 90 : 0, opacity: menuOpen ? 0.7 : 1 }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
-        tabIndex={0}
-        role="button"
-        className="btn btn-ghost btn-circle"
+      {/* Menu Toggle Button */}
+      <motion.button
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        className="p-2 rounded-lg text-slate-300 hover:text-purple-400 transition-colors"
         onClick={() => setMenuOpen(!menuOpen)}
-        aria-label="Toggle menu"
+        aria-label="Toggle navigation menu"
       >
-        {menuOpen ? <X size={24} /> : <Menu size={24} />}
-      </motion.div>
+        {menuOpen ? (
+          <X className="w-6 h-6" />
+        ) : (
+          <Menu className="w-6 h-6" />
+        )}
+      </motion.button>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Panel */}
       {menuOpen && (
-        <motion.ul
+        <motion.div
           ref={menuRef}
-          tabIndex={0}
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-          className={`menu menu-sm dropdown-content bg-[#535353cd] rounded-box rounded-lg z-50 mt-3 w-52 p-4 shadow justify-center items-center gap-4 absolute left-0 top-full`}
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -20 }}
+          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          className="fixed inset-0 z-50 bg-slate-900/90 backdrop-blur-lg"
         >
-          {[
-            { href: "#who-am-i", label: "Who am I?" },
-            { href: "#skills", label: "Skills" },
-            { href: "#projects", label: "Projects" },
-            { href: "#contact", label: "Contact me" },
-          ].map((link, index) => (
-            <li key={link.href}>
-              <Link href={link.href} className="text-lg">
+          <div className="container mx-auto px-4 pt-20 bg-purple-800 p-10 h-screen">
+            {/* Header */}
+            {/* Close Button */}
+            <div className="flex justify-end mb-12">
+              <button
+                onClick={() => setMenuOpen(false)}
+                className="text-slate-300 hover:text-purple-400 transition-colors"
+              >
+                <X className="w-8 h-8" />
+              </button>
+            </div>
+
+            {/* Navigation Links */}
+            <nav className="flex flex-col gap-8">
+              {[
+                { href: '#who-am-i', label: 'About' },
+                { href: '#skills', label: 'Skills' },
+                { href: '#projects', label: 'Projects' },
+                { href: '#contact', label: 'Contact' }
+              ].map((link, index) => (
                 <motion.div
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                  className="font-bold hover:animate-pulse mb-4"
+                  key={link.href}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1 + 0.2 }}
                 >
-                  {link.label}
+                  <Link
+                    href={link.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="group relative text-2xl font-medium text-slate-300 hover:text-purple-400 transition-colors"
+                  >
+                    {link.label}
+                    <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-purple-400 group-hover:w-full transition-all duration-300" />
+                  </Link>
                 </motion.div>
-              </Link>
-            </li>
-          ))}
-        </motion.ul>
+              ))}
+            </nav>
+
+            {/* Social Links */}
+            <div className="mt-16 flex gap-6 justify-center">
+              {[
+                { href: 'https://github.com/01Malek01', icon: <BsGithub className="w-6 h-6" /> },
+                { href: 'https://linkedin.com/in/malek-mostafa-salah-026362222/', icon: <BsLinkedin className="w-6 h-6" /> },
+                { href: 'mailto:malekmostafa0051@gmail.com', icon: <HiOutlineMail className="w-6 h-6" /> }
+              ].map((link, index) => (
+                <motion.a
+                  key={index}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: index * 0.1 + 0.5 }}
+                  className="text-slate-300 hover:text-purple-400 transition-colors"
+                >
+                  {link.icon}
+                </motion.a>
+              ))}
+            </div>
+          </div>
+        </motion.div>
       )}
     </div>
   );

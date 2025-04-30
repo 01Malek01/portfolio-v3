@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+body {
+  overflow-x: hidden;
+}
+
 :root {
   --button-primary: #f44336;
   --button-primary-hover: #e53935;
@@ -21,7 +28,7 @@
   position: fixed;
   bottom: 50px;
   right: 50px;
-  color: black;
+  color: purple;
   border: none;
   width: 60px;
   height: 60px;
@@ -32,6 +39,7 @@
   cursor: pointer;
   transition: all 0.2s ease;
   z-index: 9999;
+  font-weight: bold;
 }
 
 /* styles/globals.css */
@@ -115,13 +123,13 @@ body {
 
 *::-webkit-scrollbar-thumb {
   border-radius: 5px;
-  background-color: #000000;
+  background-color: #1a2436;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background-color: #000000;
+  background-color: #1a2436;
 }
 
 *::-webkit-scrollbar-thumb:active {
-  background-color: #000000;
+  background-color: #1a2436;
 }

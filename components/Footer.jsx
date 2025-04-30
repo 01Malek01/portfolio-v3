@@ -2,34 +2,69 @@ import React from 'react';
 import { BsGithub, BsLinkedin, BsWhatsapp } from 'react-icons/bs';
 import { HiOutlineMail } from 'react-icons/hi';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 function Footer() {
  return (
-  <>
-   {/* Divider */}
-   <div className="bg-gray-200 h-[0.5px]"></div>
+  <motion.footer
+   initial={{ opacity: 0 }}
+   whileInView={{ opacity: 1 }}
+   viewport={{ once: true }}
+   className="border-t border-slate-800/50 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
+  >
+   <div className="container mx-auto py-8 px-4">
+    <div className="flex flex-col items-center justify-center gap-6">
+     {/* Social Links */}
+     <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      className="flex gap-6"
+     >
+      {[
+       {
+        href: "https://github.com/01Malek01",
+        icon: <BsGithub className="text-2xl" />,
+       },
+       {
+        href: "https://www.linkedin.com/in/malek-mostafa-web-dev/",
+        icon: <BsLinkedin className="text-2xl" />,
+       },
+       {
+        href: "mailto:malekmostafa0051@gmail.com",
+        icon: <HiOutlineMail className="text-2xl" />,
+       },
+       {
+        href: "https://wa.me/201125485384",
+        icon: <BsWhatsapp className="text-2xl" />,
+       }
+      ].map((link, index) => (
 
-   {/* Footer */}
-   <footer className="py-8 bg-white">
-    <div className="container mx-auto flex flex-col items-center justify-center text-center text-black">
-     <p className="text-lg mb-4 font-semibold">© 2024 Malek Mostafa</p>
-     <div className="flex flex-row gap-8 justify-center items-center">
-      <Link href="https://github.com/01Malek01">
-       <BsGithub className="text-2xl text-black hover:text-gray-700 transition-colors duration-300" />
-      </Link>
-      <Link href="https://www.linkedin.com/in/malek-mostafa-salah-026362222/">
-       <BsLinkedin className="text-2xl text-black hover:text-gray-700 transition-colors duration-300" />
-      </Link>
-      <Link href="mailto:malekmostafa0051@gmail.com">
-       <HiOutlineMail className="text-2xl text-black hover:text-gray-700 transition-colors duration-300" />
-      </Link>
-      <Link href="https://wa.me/201125485384">
-       <BsWhatsapp className="text-2xl text-black hover:text-gray-700 transition-colors duration-300" />
-      </Link>
-     </div>
+       <Link
+        key={link.href}
+        href={link.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="p-3 rounded-lg bg-slate-800/30 backdrop-blur-sm transition-all text-slate-300 hover:scale-110 "
+       >
+        <motion.div whileHover={{ scale: 1.1 }}>
+         {link.icon}
+        </motion.div>
+       </Link>
+      ))}
+     </motion.div>
+
+     {/* Copyright */}
+     <motion.p
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      className="text-center text-slate-400 text-sm"
+     >
+      © 2024 <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Malek Mostafa</span>
+      <br />
+     </motion.p>
     </div>
-   </footer>
-  </>
+   </div>
+  </motion.footer>
  );
 }
 

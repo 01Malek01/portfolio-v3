@@ -1,5 +1,3 @@
-
-
 import { cn } from "@/lib/utils";
 import Marquee from "@/components/magicui/marquee";
 import { motion } from "framer-motion";
@@ -10,101 +8,95 @@ import {
   FaNodeJs,
   FaReact,
   FaDatabase,
-
   FaFileCode,
 } from "react-icons/fa";
 import { SiTailwindcss, SiNextdotjs, SiExpress, SiMongodb, SiMongoose } from "react-icons/si";
+
 const skills = [
   {
     name: "HTML",
     body: "The standard markup language for creating web pages.",
-    icon: <FaHtml5 />,
+    icon: <FaHtml5 className="text-orange-500" />,
   },
   {
     name: "CSS",
-    body: "A style sheet language used for describing the presentation of a document written in HTML.",
-    icon: <FaCss3Alt />,
+    body: "Style sheet language for describing document presentation.",
+    icon: <FaCss3Alt className="text-blue-500" />,
   },
   {
     name: "JavaScript",
-    body: "A programming language that allows you to implement complex features on web pages.",
-    icon: <FaJsSquare />,
+    body: "Programming language for interactive web features.",
+    icon: <FaJsSquare className="text-yellow-400" />,
   },
   {
     name: "TypeScript",
-    body: "A superset of JavaScript that adds static typing to the language.",
-    icon: <FaFileCode />,
+    body: "Superset of JavaScript with static typing.",
+    icon: <FaFileCode className="text-blue-400" />,
   },
   {
     name: "Node.js",
-    body: "A JavaScript runtime built on Chrome's V8 JavaScript engine, designed for building scalable network applications.",
-    icon: <FaNodeJs />,
+    body: "JavaScript runtime for scalable network applications.",
+    icon: <FaNodeJs className="text-green-500" />,
   },
   {
     name: "React.js",
-    body: "A JavaScript library for building user interfaces, maintained by Facebook.",
-    icon: <FaReact />,
+    body: "Library for building user interfaces.",
+    icon: <FaReact className="text-cyan-400" />,
   },
   {
     name: "Express.js",
-    body: "A minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.",
-    icon: <SiExpress />,
+    body: "Minimal Node.js web application framework.",
+    icon: <SiExpress className="text-gray-300" />,
   },
   {
     name: "MongoDB",
-    body: "A document-oriented NoSQL database used for high volume data storage.",
-    icon: <SiMongodb />,
+    body: "Document-oriented NoSQL database.",
+    icon: <SiMongodb className="text-green-400" />,
   },
   {
     name: "Tailwind CSS",
-    body: "A utility-first CSS framework for rapidly building custom designs.",
-    icon: <SiTailwindcss />,
+    body: "Utility-first CSS framework.",
+    icon: <SiTailwindcss className="text-cyan-300" />,
   },
   {
     name: "Next.js",
-    body: "A React framework that enables several extra features, including server-side rendering and generating static websites for React-based web applications.",
-    icon: <SiNextdotjs />,
+    body: "React framework with SSR and static generation.",
+    icon: <SiNextdotjs className="text-white" />,
   },
   {
     name: "REST API",
-    body: "An architectural style for an application program interface (API) that uses HTTP requests to access and use data.",
-    icon: <FaDatabase />,
+    body: "Architectural style for web APIs.",
+    icon: <FaDatabase className="text-purple-400" />,
   },
   {
     name: "Mongoose",
-    body: "An elegant MongoDB object modeling for Node.js.",
-    icon: <SiMongoose />,
+    body: "MongoDB object modeling for Node.js.",
+    icon: <SiMongoose className="text-red-400" />,
   },
 ];
 
-const ReviewCard = ({
-  icon,
-  name,
-  username,
-  body,
-}) => {
+const SkillCard = ({ icon, name, body }) => {
   return (
-
-
-    <figure
+    <motion.figure
+      whileHover={{ scale: 1.05 }}
       className={cn(
-        "relative w-64 cursor-pointer overflow-hidden rounded-xl border p-4",
-        // light styles
-        "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
-        // dark styles
-        "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15] hover:scale-110 transition-all ease-in-out duration-200",
+        "relative w-64 cursor-pointer overflow-hidden rounded-2xl border p-6",
+        "border-slate-800 bg-slate-900/30 backdrop-blur-sm",
+        "hover:bg-slate-800/40 transition-all duration-300"
       )}
     >
-      <div className="flex flex-col items-center gap-2">
+      <div className="flex flex-col items-center gap-4">
         <span className="text-5xl">{icon}</span>
-        <div className="flex flex-col">
-          <figcaption className="text-md font-semibold dark:text-white">
+        <div className="flex flex-col text-center">
+          <figcaption className="text-xl font-semibold text-slate-200">
             {name}
           </figcaption>
         </div>
       </div>
-      <blockquote className="mt-2 text-sm">{body}</blockquote>
-    </figure>
+      <blockquote className="mt-4 text-sm text-slate-400 text-center">
+        {body}
+      </blockquote>
+    </motion.figure>
   );
 };
 
@@ -113,18 +105,27 @@ export default function Skills() {
     <motion.div
       initial={{ opacity: 0, y: 100 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1.7, ease: "easeInOut" }}
+      transition={{ duration: 1.5, ease: "easeInOut" }}
       viewport={{ once: true }}
-      className="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl">
-      <h1 className="text-6xl font-bold text-center m-5"> Skills</h1>
-      <Marquee pauseOnHover className="[--duration:35s] ">
+      className="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-20"
+    >
+      <motion.h1
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+        className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-12"
+      >
+        Technical Expertise
+      </motion.h1>
+
+      <Marquee pauseOnHover className="[--duration:35s]">
         {skills.map((skill) => (
-          <ReviewCard className={`hover:scale-110`} key={skills.name} {...skill} />
+          <SkillCard key={skill.name} {...skill} />
         ))}
       </Marquee>
 
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-white dark:from-background"></div>
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-white dark:from-background"></div>
-    </ motion.div>
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-slate-900"></div>
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-slate-900"></div>
+    </motion.div>
   );
 }
