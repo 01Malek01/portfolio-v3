@@ -24,7 +24,7 @@ function Hero() {
         className="relative z-10 text-center w-full"
       >
         {/* Icons */}
-        <div className="mb-8 flex justify-center gap-4 flex-wrap">
+        <div className="mb-8  justify-center gap-4 flex-wrap hidden lg:flex">
           {[FiCode, FiServer, FiCpu].map((Icon, i) => (
             <motion.div
               key={i}
@@ -41,7 +41,7 @@ function Hero() {
         {/* Name */}
         <WordPullUp
           words={"Malek Mostafa"}
-          className="text-4xl sm:text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-4"
+          className="text-3xl sm:text-4xl md:text-7xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-4"
         />
 
         {/* Subtitle */}
@@ -119,7 +119,7 @@ function Hero() {
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 2.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+        className="absolute bottom-8 -translate-x-1/2 z-10 hidden lg:flex flex-col items-center"
       >
         <Link href="#who-am-i" className="text-purple-400 hover:text-purple-500 transition-colors">
           <div className="animate-bounce w-6 h-6 border-4 border-purple-400 rounded-full" />

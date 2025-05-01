@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 
 function Header() {
   return (
-    <header className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border-b border-slate-800/80 backdrop-blur-sm fixed top-0 w-full  overflow-hidden z-50">
+    <header className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border-b border-slate-800/80 backdrop-blur-sm fixed top-0 w-full  z-50">
       <div className="container mx-auto flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8">
         {/* Mobile Menu */}
         <div className="flex items-center lg:hidden">
@@ -20,7 +20,7 @@ function Header() {
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
-          className=" items-center hidden lg:flex"
+          className="np items-center hidden lg:flex"
         >
           <Image
             priority

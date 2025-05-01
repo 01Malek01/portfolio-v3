@@ -31,14 +31,14 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="relative flex bg-slate-900 text-slate-100 w-full min-h-screen">
+    <div className="relative flex bg-slate-900 text-slate-100 w-full min-h-screen ">
       <Nav />
 
       <div className=" w-full">
         <Header />
         <Hero />
 
-        <main className="space-y-20 lg:space-y-32 pb-20">
+        <main className="space-y-20 lg:space-y-32 pb-20 overflow-hidden">
           <section id="who-am-i" className="scroll-mt-24">
             <WhoAmI />
           </section>
@@ -59,7 +59,7 @@ export default function Home() {
         <Footer />
 
         <motion.button
-          className="fixed bottom-8 right-8 p-4 bg-purple-600/80 hover:bg-purple-700/90 backdrop-blur rounded-full shadow-lg transition-all"
+          className="fixed bottom-8 right-8 p-2  md:p-4 bg-purple-600/80 hover:bg-purple-700/90 backdrop-blur rounded-full shadow-lg transition-all"
           onClick={scrollToTop}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: showScrollToTop ? 1 : 0, y: showScrollToTop ? 0 : 20 }}
