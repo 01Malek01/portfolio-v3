@@ -10,7 +10,9 @@ export default function Nav() {
  const links = [
   { href: '#who-am-i', label: 'About' },
   { href: '#skills', label: 'Skills' },
+  { href: '#ai-tools', label: 'AI Tools' },
   { href: '#projects', label: 'Projects' },
+  { href: '#testimonials', label: 'Testimonials' },
   { href: '#contact', label: 'Contact' }
  ];
 

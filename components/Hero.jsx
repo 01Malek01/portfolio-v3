@@ -83,7 +83,7 @@ function Hero() {
             className="flex items-center justify-center gap-2 px-8 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 transition-all group"
           >
             <FiDownload className="w-5 h-5 text-white" />
-            <span className="text-white font-semibold">Download CV</span>
+            <span className="text-white font-semibold">Download Resume</span>
           </a>
 
           <a

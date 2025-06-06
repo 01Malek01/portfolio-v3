@@ -8,7 +8,9 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import WhoAmI from "@/components/WhoAmI";
 import Skills from "@/components/Skills";
+import AITools from "@/components/AITools";
 import Projects from "@/components/Projects";
+import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -47,8 +49,16 @@ export default function Home() {
             <Skills />
           </section>
 
+          <section id="ai-tools" className="scroll-mt-24">
+            <AITools />
+          </section>
+
           <section id="projects" className="scroll-mt-24">
             <Projects />
+          </section>
+
+          <section id="testimonials" className="scroll-mt-24">
+            <Testimonials />
           </section>
 
           <section id="contact" className="scroll-mt-24">

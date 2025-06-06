@@ -9,12 +9,21 @@ export const fullProjects = [
     githubLink2: "https://github.com/01Malek01/data-analysis-backend",
   },
   {
-    name: "Donation App",
+    name: "Homyz-Real Estate",
     description:
-      "A fullstack donation app built with Node.js, Express, and vanilla HTML, CSS, and JavaScript. It integrates PayPal for secure payment processing and uses Nodemailer to send confirmation emails after successful donations. The app provides a seamless experience for users to contribute to causes they care about, with real-time payment confirmation and email notifications.",
-    image: "/projectsImages/donation-app.webp",
-    liveLink: "https://donate-together.onrender.com/",
-    githubLink: "https://github.com/01Malek01/Donation-App",
+      "A full-stack real estate application built with the MERN stack, featuring animations with Framer Motion and UI components from Mantine. Authentication is handled using Auth0 SDKs. The back end is powered by Node.js, Express, MongoDB, and Prisma. Users can book visits to residencies or post their own, and Leaflet is used for maps. Key features include authentication, authorization, creating residences, and booking residencies.",
+    image: "/projectsImages/Screenshot 2024-07-13 114355.webp",
+    liveLink: "https://fullstack-real-estate-one.vercel.app/",
+    githubLink: "https://github.com/01Malek01/fullstack-real-estate",
+  },
+  {
+    name: "MEats",
+    description:
+      "A MERN stack web application designed for food ordering and restaurant management. It features user authentication and authorization using Auth0 SDKs, allowing secure access for customers and restaurant owners. Customers can browse menus, place orders, and track them in real-time, while restaurant owners can manage menus and track orders. The application uses Shadcn for stylish components and React Query for efficient server state management. The backend, built with Express.js and Node.js, ensures scalability and robustness, with MongoDB for efficient data storage. MEats provides a seamless, user-friendly experience across devices, combining modern web technologies with robust security features.",
+    image: "/projectsImages/meats.webp",
+    liveLink: "https://food-ordering-app-frontend-mstf.onrender.com",
+    githubLink: "https://github.com/01Malek01/food-ordering-app-frontend",
+    githubLink2: "https://github.com/01Malek01/food-ordering-app-backend",
   },
   {
     name: "E-Commerce App",
@@ -25,16 +34,15 @@ export const fullProjects = [
     githubLink: "https://github.com/01Malek01/E-commerce-frontend",
     githubLink2: "https://github.com/01Malek01/E-commerce-backend",
   },
-
   {
-    name: "MEats",
+    name: "Donation App",
     description:
-      "A MERN stack web application designed for food ordering and restaurant management. It features user authentication and authorization using Auth0 SDKs, allowing secure access for customers and restaurant owners. Customers can browse menus, place orders, and track them in real-time, while restaurant owners can manage menus and track orders. The application uses Shadcn for stylish components and React Query for efficient server state management. The backend, built with Express.js and Node.js, ensures scalability and robustness, with MongoDB for efficient data storage. MEats provides a seamless, user-friendly experience across devices, combining modern web technologies with robust security features.",
-    image: "/projectsImages/meats.webp",
-    liveLink: "https://food-ordering-app-frontend-mstf.onrender.com",
-    githubLink: "https://github.com/01Malek01/food-ordering-app-frontend",
-    githubLink2: "https://github.com/01Malek01/food-ordering-app-backend",
+      "A fullstack donation app built with Node.js, Express, and vanilla HTML, CSS, and JavaScript. It integrates PayPal for secure payment processing and uses Nodemailer to send confirmation emails after successful donations. The app provides a seamless experience for users to contribute to causes they care about, with real-time payment confirmation and email notifications.",
+    image: "/projectsImages/donation-app.webp",
+    liveLink: "https://donate-together.onrender.com/",
+    githubLink: "https://github.com/01Malek01/Donation-App",
   },
+
   {
     name: "Laptoshop",
     description:
@@ -51,14 +59,7 @@ export const fullProjects = [
     image: "/projectsImages/chat app.webp",
     githubLink: "https://github.com/01Malek01/chat-app-same-domain",
   },
-  {
-    name: "Homyz-Real Estate",
-    description:
-      "A full-stack real estate application built with the MERN stack, featuring animations with Framer Motion and UI components from Mantine. Authentication is handled using Auth0 SDKs. The back end is powered by Node.js, Express, MongoDB, and Prisma. Users can book visits to residencies or post their own, and Leaflet is used for maps. Key features include authentication, authorization, creating residences, and booking residencies.",
-    image: "/projectsImages/Screenshot 2024-07-13 114355.webp",
-    liveLink: "https://fullstack-real-estate-one.vercel.app/",
-    githubLink: "https://github.com/01Malek01/fullstack-real-estate",
-  },
+
   {
     name: "Synergy: Social Media App",
     description:
