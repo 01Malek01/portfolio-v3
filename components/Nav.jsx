@@ -12,7 +12,7 @@ export default function Nav() {
   { href: '#skills', label: 'Skills' },
   { href: '#ai-tools', label: 'AI Tools' },
   { href: '#projects', label: 'Projects' },
-  { href: '#testimonials', label: 'Testimonials' },
+  { href: '#freelance', label: 'Freelance' },
   { href: '#contact', label: 'Contact' }
  ];
 

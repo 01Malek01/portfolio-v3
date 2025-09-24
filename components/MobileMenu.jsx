@@ -55,7 +55,7 @@ function MobileMenu() {
                 { href: '#skills', label: 'Skills' },
                 { href: '#ai-tools', label: 'AI Tools' },
                 { href: '#projects', label: 'Projects' },
-                { href: '#testimonials', label: 'Testimonials' },
+                { href: '#freelance', label: 'Freelance' },
                 { href: '#contact', label: 'Contact' }
               ].map((link, index) => (
                 <motion.div

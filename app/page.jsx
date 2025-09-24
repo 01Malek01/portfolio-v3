@@ -10,7 +10,7 @@ import WhoAmI from "@/components/WhoAmI";
 import Skills from "@/components/Skills";
 import AITools from "@/components/AITools";
 import Projects from "@/components/Projects";
-import Testimonials from "@/components/Testimonials";
+import FreelanceExperience from "@/components/FreelanceExperience";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -57,8 +57,8 @@ export default function Home() {
             <Projects />
           </section>
 
-          <section id="testimonials" className="scroll-mt-24">
-            <Testimonials />
+          <section id="freelance" className="scroll-mt-24">
+            <FreelanceExperience />
           </section>
 
           <section id="contact" className="scroll-mt-24">

@@ -2,7 +2,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FiCode, FiServer, FiCpu } from "react-icons/fi";
-import WaiAnimations from "./WaiAnimations";
+// import WaiAnimations from "./WaiAnimations";
 
 function WhoAmI() {
   return (
@@ -16,9 +16,9 @@ function WhoAmI() {
           className="flex flex-col md:flex-row gap-12 items-center bg-slate-900/30 backdrop-blur-sm rounded-3xl p-6 sm:p-8 md:p-12 border border-slate-800"
         >
           {/* Animation Section */}
-          <div className="w-full md:w-1/2">
+          {/* <div className="w-full md:w-1/2">
             <WaiAnimations />
-          </div>
+          </div> */}
 
           {/* Text Content */}
           <motion.div
