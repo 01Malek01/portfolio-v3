@@ -1,5 +1,25 @@
 export const fullProjects = [
   {
+    name: "Tasks Master",
+    description:
+      "A comprehensive task and note management application built with the MERN stack. Features AI-powered task suggestions and automatic subtask generation to streamline your workflow. The app includes an intelligent AI assistant that helps organize, prioritize, and break down complex tasks into manageable steps. Users can create, track, and manage their tasks and notes in one centralized platform, with smart categorization and prioritization features to boost productivity.",
+    image: "/projectsImages/tasks-master.png",
+    liveLink: "https://ai-integrated-task-master-frontend.vercel.app/",
+    githubLink:
+      "https://github.com/01Malek01/AI-integrated-task-master-frontend",
+    githubLink2:
+      "https://github.com/01Malek01/AI-integrated-task-master-backend",
+  },
+  {
+    name: "Gym website and system",
+    description:
+      "A complete gym management system built with the MERN stack that offers online membership purchases and comprehensive member management. The platform includes a user-friendly member dashboard for tracking membership status and workout progress. Administrators benefit from a powerful dashboard to manage memberships, track attendance, and monitor member progress. The system streamlines gym operations while providing members with convenient access to their fitness journey and membership details.",
+    image: "/projectsImages/gym.png",
+    liveLink: "https://gym-front-end-azure.vercel.app/",
+    githubLink: "https://github.com/01Malek01/gym-front-end",
+    githubLink2: "https://github.com/01Malek01/gym-back-end",
+  },
+  {
     name: "Sheet To Chart",
     description:
       "A fullstack MERN app that allows users to upload key-value Excel sheets and transform them into stunning charts with ease. Not only can users store their files in a secure database for future use, but they can also export the visualizations as PDFs, add notes to each project, and even download their work later.",

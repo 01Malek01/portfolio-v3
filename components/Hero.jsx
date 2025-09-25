@@ -64,9 +64,9 @@ function Hero() {
           className="text-base sm:text-lg md:text-xl text-slate-300 max-w-3xl mx-auto mb-12 leading-relaxed px-2"
         >
           Crafting scalable solutions with{" "}
-          <span className="text-purple-400 font-semibold">React</span>,{" "}
+          <span className="text-cyan-400 font-semibold">React</span>,{" "}
           <span className="text-emerald-400 font-semibold">Node.js</span>, and{" "}
-          <span className="text-cyan-400 font-semibold">MongoDB</span>.{" "}
+          <span className="text-green-700 font-semibold">MongoDB</span>.{" "}
           Specializing in high-performance web applications with modern architecture.
         </motion.p>
 
@@ -95,23 +95,7 @@ function Hero() {
           </a>
         </motion.div>
 
-        {/* Stats */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2 }}
-          className="mt-16 flex flex-wrap gap-8 sm:gap-16 justify-center items-center max-w-4xl mx-auto opacity-90"
-        >
-          {[
-            { value: "15+", label: "Projects", color: "text-blue-400" },
-            { value: "98%", label: "Satisfaction", color: "text-purple-400" },
-          ].map((stat, i) => (
-            <div key={i} className="text-center">
-              <div className={`text-3xl sm:text-4xl font-bold ${stat.color}`}>{stat.value}</div>
-              <div className="text-sm sm:text-base text-slate-400 mt-1">{stat.label}</div>
-            </div>
-          ))}
-        </motion.div>
+     
       </motion.div>
 
       {/* Scroll Down Button */}

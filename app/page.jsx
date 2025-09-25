@@ -15,6 +15,7 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
 import { useState } from "react";
+import ChromaGrid from "@/components/ChromaGrid";
 
 export default function Home() {
   const [showScrollToTop, setShowScrollToTop] = useState(false);

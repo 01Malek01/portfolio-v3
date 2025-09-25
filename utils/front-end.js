@@ -44,22 +44,4 @@ export const frontProjects = [
     liveLink: "https://task-manager-iota-kohl.vercel.app/",
     githubLink: "https://github.com/01Malek01/task-manager",
   },
-
-  {
-    name: "Prayer Time App",
-    description:
-      "A React app with Material UI that uses an API to provide prayer times.",
-    image: "/projectsImages/nike (5).webp",
-    liveLink: "https://prayer-time-app.vercel.app/",
-    githubLink: "https://github.com/01Malek01/prayer-time-app",
-  },
-
-  // {
-  //   name: "Simple E-commerce",
-  //   description:
-  //     "A simple e-commerce platform built with React and Redux Toolkit. It features filtering, add to cart functionality, and is styled with Bootstrap.",
-  //   image: "/projectsImages/e-commerce.webp",
-  //   liveLink: "https://simple-ecommerce-fe4o.vercel.app/",
-  //   githubLink: "uhttps://github.com/01Malek01/simple-Ecommerce",
-  // },
 ];

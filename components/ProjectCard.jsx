@@ -6,6 +6,7 @@ import { FiGithub, FiExternalLink, FiCode } from 'react-icons/fi';
 
 function ProjectCard({ projectTitle, projectDescription, projectImage, githubLink, githubLink2, liveLink }) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   const renderDescription = () => {
     if (isExpanded || projectDescription.length <= 100) {
@@ -22,23 +23,39 @@ function ProjectCard({ projectTitle, projectDescription, projectImage, githubLin
       whileHover={{ scale: 1.03 }}
       className="relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/30 backdrop-blur-sm"
     >
-      <div className="h-48 relative overflow-hidden">
+      <div className="h-48 relative overflow-hidden bg-slate-800/30">
+        {!imageLoaded && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="animate-pulse flex space-x-2">
+              <div className="w-3 h-3 bg-purple-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+              <div className="w-3 h-3 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+              <div className="w-3 h-3 bg-indigo-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+            </div>
+          </div>
+        )}
         {liveLink ? (
-          <Link href={liveLink}>
+          <Link href={liveLink} className={`block h-full w-full ${!imageLoaded ? 'opacity-0' : 'opacity-100'}`}>
             <Image
               src={projectImage}
               alt={projectTitle}
               fill
-              className="object-cover hover:scale-105 transition-transform duration-300"
+              className="object-cover hover:scale-105 transition-all duration-300"
+              onLoadingComplete={() => setImageLoaded(true)}
+              priority={false}
             />
           </Link>
         ) : (
-          <Image
-            src={projectImage}
-            alt={projectTitle}
-            fill
-            className="object-cover"
-          />
+          <div className={`h-full w-full ${!imageLoaded ? 'opacity-0' : 'opacity-100'}`}>
+            <Image
+              src={projectImage}
+              alt={projectTitle}
+              fill
+              className="object-cover"
+              onLoadingComplete={() => setImageLoaded(true)}
+              priority={false}
+              
+            />
+          </div>
         )}
       </div>
 
