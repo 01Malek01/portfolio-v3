@@ -1,0 +1,23 @@
+pipeline{
+    agent any
+
+    environment{
+        FLY_API_TOKEN = credentials('flyio-api-token') 
+    }
+
+    stages{
+        stage('Deploy to fly.io'){
+            steps{
+                 sh '''
+                curl -L https://fly.io/install.sh | sh
+                export FLYCTL_INSTALL="$HOME/.fly"
+                export PATH="$FLYCTL_INSTALL/bin:$PATH"
+                
+                flyctl auth token $FLY_API_TOKEN
+                flyctl deploy --remote-only
+                echo "Deployed to fly.io"
+                '''
+            }
+        }
+    }
+}
