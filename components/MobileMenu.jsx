@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { createPortal } from "react-dom";
 import { FiMenu, FiX } from "react-icons/fi";
 import { BsGithub, BsLinkedin } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
@@ -25,7 +26,7 @@ function MobileMenu() {
   const lenis = useLenis();
 
   return (
-    <div className="lg:hidden relative">
+    <>
       <button
         className="p-2 rounded-lg text-apple-50/80 hover:text-purple-400 transition-colors active:scale-90"
         onClick={() => setMenuOpen(!menuOpen)}
@@ -34,12 +35,13 @@ function MobileMenu() {
         {menuOpen ? <FiX className="w-6 h-6" /> : <FiMenu className="w-6 h-6" />}
       </button>
 
-      {menuOpen && (
+      {menuOpen && typeof window !== 'undefined' && createPortal(
         <div
-          className="fixed inset-0 z-[60] bg-apple-950"
-          style={{ animation: 'navSlideIn 0.35s ease-out' }}
+          className="fixed inset-0 z-[60]"
+          style={{ backgroundColor: '#0a0a0b', animation: 'navSlideIn 0.35s ease-out' }}
+          onClick={() => setMenuOpen(false)}
         >
-          <div className="container mx-auto px-6 pt-20 h-screen">
+          <div className="container mx-auto px-6 pt-28 h-screen overflow-y-auto" onClick={(e) => e.stopPropagation()}>
             <div className="flex justify-end mb-12">
               <button
                 onClick={() => setMenuOpen(false)}
@@ -83,9 +85,10 @@ function MobileMenu() {
               ))}
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
-    </div>
+    </>
   );
 }
 
