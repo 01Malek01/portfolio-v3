@@ -1,6 +1,5 @@
 'use client';
 import { useEffect, useCallback, useRef } from "react";
-import { motion } from "framer-motion";
 import { IoMdRocket } from "react-icons/io";
 import Nav from "@/components/Nav";
 import Header from "@/components/Header";

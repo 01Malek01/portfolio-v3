@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { FiMenu, FiX } from "react-icons/fi";
 import { BsGithub, BsLinkedin } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
 import { useLenis } from "@/components/LenisProvider";
@@ -31,7 +31,7 @@ function MobileMenu() {
         onClick={() => setMenuOpen(!menuOpen)}
         aria-label="Toggle navigation menu"
       >
-        {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        {menuOpen ? <FiX className="w-6 h-6" /> : <FiMenu className="w-6 h-6" />}
       </button>
 
       {menuOpen && (
@@ -45,7 +45,7 @@ function MobileMenu() {
                 onClick={() => setMenuOpen(false)}
                 className="text-apple-50/80 hover:text-purple-400 transition-colors"
               >
-                <X className="w-8 h-8" />
+                <FiX className="w-8 h-8" />
               </button>
             </div>
 
