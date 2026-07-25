@@ -4,37 +4,19 @@ import { BsGithub, BsLinkedin } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
 import Link from "next/link";
 import MobileMenu from "./MobileMenu";
-import Image from "next/image";
-import { motion } from "framer-motion";
 
 function Header() {
   return (
-    <header className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border-b border-slate-800/80 backdrop-blur-sm fixed top-0 w-full  z-50">
-      <div className="container mx-auto flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8">
-        {/* Mobile Menu */}
+    <header className="bg-apple-950/80 backdrop-blur-xl border-b border-white/[0.05] fixed top-0 w-full z-50">
+      <div className="container mx-auto flex items-center justify-between h-20 px-6 sm:px-8 lg:px-12">
         <div className="flex items-center lg:hidden">
           <MobileMenu />
         </div>
 
-        {/* Logo */}
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          className="np items-center hidden lg:flex"
-        >
-          <Image
-            priority
-            src="/logo.png"
-            alt="logo"
-            width={48}
-            height={48}
-            className="rounded-full border-2 border-slate-700 hover:border-slate-600 transition-colors"
-          />
-        </motion.div>
+        <div className="items-center hidden lg:flex">
+          <span className="text-lg font-semibold text-apple-50 tracking-tight">Malek Mostafa</span>
+        </div>
 
-
-
-        {/* Social Links */}
         <div className="flex items-center gap-3 sm:gap-4 md:gap-6">
           {[
             { href: 'https://github.com/01Malek01', icon: <BsGithub /> },
@@ -45,22 +27,10 @@ function Header() {
               key={link.href}
               href={link.href}
               target="_blank"
-              className="p-2 rounded-lg hover:bg-slate-800/40 backdrop-blur transition-all"
+              className="p-2 rounded-lg hover:bg-white/[0.08] backdrop-blur transition-all text-apple-300 hover:text-purple-400 text-xl"
+              style={{ animation: `heroIconIn 0.5s ${index * 0.15 + 0.2}s both` }}
             >
-              <motion.div
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{
-                  duration: 0.5,
-                  delay: index * 0.15,
-                  type: "spring",
-                  stiffness: 260,
-                  damping: 20
-                }}
-                className="text-slate-300 hover:text-purple-400 text-xl transition-colors"
-              >
-                {link.icon}
-              </motion.div>
+              {link.icon}
             </Link>
           ))}
         </div>

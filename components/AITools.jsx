@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils";
 import Marquee from "@/components/magicui/marquee";
-import { motion } from "framer-motion";
 import { FaTasks, FaCode, FaPalette, FaGithub, FaSearch, FaCodeBranch } from "react-icons/fa";
 import { SiOpenai, SiClickup, SiCanva } from "react-icons/si";
 
@@ -46,61 +45,50 @@ const aiTools = [
     icon: <FaSearch className="text-purple-400" />
   },
   {
-    name: "Windsurf IDE",
-    body: "AI-powered development environment that enhances coding with intelligent assistance and automation.",
-    icon: <FaCodeBranch className="text-blue-600" />
+    name: "Claude Code",
+    body: "AI coding assistant by Anthropic for agentic code generation, refactoring, and terminal-based development.",
+    icon: <FaCode className="text-yellow-600" />
   },
 ];
 
 const AIToolCard = ({ name, body, icon }) => {
   return (
-    <motion.figure
-      whileHover={{ scale: 1.05 }}
+    <figure
       className={cn(
-        "relative w-64 cursor-pointer overflow-hidden rounded-2xl border md:p-6 p-1",
-        "border-slate-800 bg-slate-900/30 backdrop-blur-sm",
-        "hover:bg-slate-800/40 transition-all duration-300"
+        "relative w-64 cursor-pointer overflow-hidden rounded-2xl md:p-6 p-1 glass-card",
+        "transition-all duration-300 hover:scale-105 hover:bg-white/[0.08]"
       )}
     >
       <div className="flex flex-col items-center gap-4 md:p-2">
         <div className="text-4xl">{icon}</div>
-        <figcaption className="text-xl font-semibold text-slate-200 text-center">
+        <figcaption className="text-xl font-semibold text-apple-50 text-center">
           {name}
         </figcaption>
-        <blockquote className="text-sm text-slate-400 text-center">
+        <blockquote className="text-sm text-apple-300 text-center">
           {body}
         </blockquote>
       </div>
-    </motion.figure>
+    </figure>
   );
 };
 
 export default function AITools() {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 100 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1.5, ease: "easeInOut" }}
-      viewport={{ once: true }}
-      className="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-20"
-    >
-      <motion.h1
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ delay: 0.3 }}
-        className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-12 text-center"
+    <div className="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden py-20">
+      <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-12 text-center"
+        style={{ animation: 'heroFadeSlide 0.8s 0.3s both' }}
       >
         AI Tools & Technologies
-      </motion.h1>
+      </h2>
 
-      <Marquee pauseOnHover className="[--duration:35s]">
+      <Marquee pauseOnHover className="[--duration:35s]" repeat={2}>
         {aiTools.map((tool) => (
           <AIToolCard key={tool.name} name={tool.name} body={tool.body} icon={tool.icon} />
         ))}
       </Marquee>
 
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-slate-900"></div>
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-slate-900"></div>
-    </motion.div>
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-apple-950"></div>
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-apple-950"></div>
+    </div>
   );
 }

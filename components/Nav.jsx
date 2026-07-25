@@ -1,11 +1,11 @@
 'use client';
-import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { FiMenu, FiX } from 'react-icons/fi';
+import { useLenis } from '@/components/LenisProvider';
 
 export default function Nav() {
  const [isOpen, setIsOpen] = useState(false);
+ const lenis = useLenis();
 
  const links = [
   { href: '#who-am-i', label: 'About' },
@@ -13,63 +13,45 @@ export default function Nav() {
   { href: '#ai-tools', label: 'AI Tools' },
   { href: '#projects', label: 'Projects' },
   { href: '#freelance', label: 'Freelance' },
+  { href: '#testimonials', label: 'Testimonials' },
   { href: '#contact', label: 'Contact' }
  ];
 
+ const handleClick = (href, e) => {
+   e.preventDefault();
+   setIsOpen(false);
+   lenis?.scrollTo(href, { offset: -80 });
+ };
+
  return (
   <>
-   {/* Toggle Button */}
    <button
     onClick={() => setIsOpen(!isOpen)}
-    className="fixed top-[9%] left-0 z-50 p-2 rounded-md bg-slate-800 text-slate-200 hover:bg-slate-700 hidden lg:block"
+    className="fixed top-[9%] left-0 z-50 px-3 py-2 rounded-md glass-card hidden lg:flex items-center gap-2 text-sm font-medium text-apple-50/80 hover:text-apple-50 transition-colors"
     aria-label="Toggle Menu"
    >
-    {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+    {isOpen ? <FiX size={16} /> : <FiMenu size={16} />}
    </button>
 
-   {/* Sidebar Navigation */}
-   <AnimatePresence>
-    {isOpen && (
-     <motion.nav
-      initial={{ x: -300 }}
-      animate={{ x: 0 }}
-      exit={{ x: -300 }}
-      transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-      className="fixed top-[11%] left-0 h-full w-64 z-40 bg-slate-900/90 backdrop-blur-md shadow-lg p-8 flex flex-col gap-6"
-     >
-      {links.map((link, index) => (
-       <Link
-        key={link.href}
-        href={link.href}
-        className="relative px-2 py-2 group transition-colors duration-300 hover:shadow-md hover:shadow-purple-500/50 rounded-lg"
-        onClick={() => setIsOpen(false)}
-       >
-        <motion.div
-         initial={{ opacity: 0, x: -20 }}
-         animate={{ opacity: 1, x: 0 }}
-         transition={{
-          duration: 0.5,
-          delay: index * 0.1,
-          type: 'spring',
-          stiffness: 260,
-          damping: 20
-         }}
+   {isOpen && (
+    <nav className="fixed top-[11%] left-0 h-full w-64 z-40 bg-apple-950/90 backdrop-blur-xl border-r border-white/[0.05] p-8 flex flex-col gap-6"
+     style={{ animation: 'navSlideIn 0.4s ease-out' }}
+    >
+     {links.map((link) => (
+       <a
+         key={link.href}
+         href={link.href}
+         className="relative px-2 py-2 group transition-colors duration-300 rounded-lg"
+         onClick={(e) => handleClick(link.href, e)}
         >
-         <span className="text-slate-300 group-hover:text-purple-400 font-medium text-lg">
+         <span className="text-apple-50/80 group-hover:text-purple-400 font-medium text-lg">
           {link.label}
          </span>
-         <motion.span
-          className="absolute bottom-0 left-0 w-full h-[2px] bg-purple-400 origin-left scale-x-0"
-          initial={{ scaleX: 0 }}
-          whileHover={{ scaleX: 1 }}
-          transition={{ duration: 0.3 }}
-         />
-        </motion.div>
-       </Link>
-      ))}
-     </motion.nav>
-    )}
-   </AnimatePresence>
+         <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-purple-400 transition-all duration-300 group-hover:w-full" />
+       </a>
+     ))}
+    </nav>
+   )}
   </>
  );
 }

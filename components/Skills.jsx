@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils";
 import Marquee from "@/components/magicui/marquee";
-import { motion } from "framer-motion";
 import {
   FaHtml5,
   FaCss3Alt,
@@ -10,7 +9,7 @@ import {
   FaDatabase,
   FaFileCode,
 } from "react-icons/fa";
-import { SiTailwindcss, SiNextdotjs, SiExpress, SiMongodb, SiMongoose } from "react-icons/si";
+import { SiTailwindcss, SiNextdotjs, SiExpress, SiMongodb, SiMongoose, SiNestjs } from "react-icons/si";
 
 const skills = [
   {
@@ -49,6 +48,11 @@ const skills = [
     icon: <SiExpress className="text-gray-300" />,
   },
   {
+    name: "NestJS",
+    body: "Progressive Node.js framework for scalable server-side apps.",
+    icon: <SiNestjs className="text-red-500" />,
+  },
+  {
     name: "MongoDB",
     body: "Document-oriented NoSQL database.",
     icon: <SiMongodb className="text-green-400" />,
@@ -77,55 +81,44 @@ const skills = [
 
 const SkillCard = ({ icon, name, body }) => {
   return (
-    <motion.figure
-      whileHover={{ scale: 1.05 }}
+    <figure
       className={cn(
-        "relative w-64 cursor-pointer overflow-hidden rounded-2xl border p-6",
-        "border-slate-800 bg-slate-900/30 backdrop-blur-sm",
-        "hover:bg-slate-800/40 transition-all duration-300"
+        "relative w-64 cursor-pointer overflow-hidden rounded-2xl p-6 glass-card",
+        "transition-all duration-300 hover:scale-105 hover:bg-white/[0.08]"
       )}
     >
       <div className="flex flex-col items-center gap-4">
         <span className="text-5xl">{icon}</span>
         <div className="flex flex-col text-center">
-          <figcaption className="text-xl font-semibold text-slate-200">
+          <figcaption className="text-xl font-semibold text-apple-50">
             {name}
           </figcaption>
         </div>
       </div>
-      <blockquote className="mt-4 text-sm text-slate-400 text-center">
+      <blockquote className="mt-4 text-sm text-apple-300 text-center">
         {body}
       </blockquote>
-    </motion.figure>
+    </figure>
   );
 };
 
 export default function Skills() {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 100 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1.5, ease: "easeInOut" }}
-      viewport={{ once: true }}
-      className="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 py-20"
-    >
-      <motion.h1
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ delay: 0.3 }}
-        className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-12 text-center "
+    <div className="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden py-20">
+      <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-12 text-center"
+        style={{ animation: 'heroFadeSlide 0.8s 0.3s both' }}
       >
         Technical Expertise
-      </motion.h1>
+      </h2>
 
-      <Marquee pauseOnHover className="[--duration:35s]">
+      <Marquee pauseOnHover className="[--duration:35s]" repeat={2}>
         {skills.map((skill) => (
           <SkillCard key={skill.name} {...skill} />
         ))}
       </Marquee>
 
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-slate-900"></div>
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-slate-900"></div>
-    </motion.div>
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-apple-950"></div>
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-apple-950"></div>
+    </div>
   );
 }

@@ -1,8 +1,7 @@
 'use client';
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useRef } from "react";
 import { motion } from "framer-motion";
 import { IoMdRocket } from "react-icons/io";
-import throttle from "lodash/throttle";
 import Nav from "@/components/Nav";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
@@ -10,56 +9,74 @@ import WhoAmI from "@/components/WhoAmI";
 import Skills from "@/components/Skills";
 import AITools from "@/components/AITools";
 import Projects from "@/components/Projects";
-import FreelanceExperience from "@/components/FreelanceExperience";
+import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import TechIconsBackground from "@/components/TechIconsBackground";
+import { Panel1, Panel2, Panel3 } from "@/components/StoryPanels";
+import { useLenis } from "@/components/LenisProvider";
 
-import { useState } from "react";
-import ChromaGrid from "@/components/ChromaGrid";
+const VISIBLE_CLASS = 'scroll-top-visible';
 
 export default function Home() {
-  const [showScrollToTop, setShowScrollToTop] = useState(false);
+  const lenis = useLenis();
+  const btnRef = useRef(null);
 
   useEffect(() => {
-    const handleScroll = throttle(() => {
-      setShowScrollToTop(window.scrollY > window.innerHeight);
-    }, 200);
+    if (!lenis) return;
+    const btn = btnRef.current;
+    if (!btn) return;
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    const handleScroll = (e) => {
+      btn.classList.toggle(VISIBLE_CLASS, e.animatedScroll > window.innerHeight);
+    };
+
+    lenis.on('scroll', handleScroll);
+    return () => lenis.off('scroll', handleScroll);
+  }, [lenis]);
 
   const scrollToTop = useCallback(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, []);
+    lenis?.scrollTo(0, { duration: 1.2 });
+  }, [lenis]);
 
   return (
-    <div className="relative flex bg-slate-900 text-slate-100 w-full min-h-screen ">
+    <div className="relative flex bg-apple-950 text-apple-50 w-full min-h-screen">
+      <TechIconsBackground />
+
       <Nav />
 
-      <div className=" w-full">
+      <div className="w-full relative z-10">
         <Header />
         <Hero />
 
-        <main className="space-y-20 lg:space-y-32 pb-20 overflow-hidden">
-          <section id="who-am-i" className="scroll-mt-24">
+        <main className="pb-20">
+          <section id="who-am-i" className="scroll-mt-24 min-h-screen flex items-center">
             <WhoAmI />
           </section>
+
+          <Panel1 />
 
           <section id="skills" className="scroll-mt-24">
             <Skills />
           </section>
 
+          <Panel2 />
+
           <section id="ai-tools" className="scroll-mt-24">
             <AITools />
           </section>
+
+          <Panel3 />
 
           <section id="projects" className="scroll-mt-24">
             <Projects />
           </section>
 
           <section id="freelance" className="scroll-mt-24">
-            <FreelanceExperience />
+          </section>
+
+          <section id="testimonials" className="scroll-mt-24">
+            <Testimonials />
           </section>
 
           <section id="contact" className="scroll-mt-24">
@@ -69,18 +86,16 @@ export default function Home() {
 
         <Footer />
 
-        <motion.button
-          className="fixed bottom-8 right-8 p-2  md:p-4 bg-purple-600/80 hover:bg-purple-700/90 backdrop-blur rounded-full shadow-lg transition-all"
+        <button
+          ref={btnRef}
           onClick={scrollToTop}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: showScrollToTop ? 1 : 0, y: showScrollToTop ? 0 : 20 }}
-          transition={{ duration: 0.3 }}
+          className="scroll-top-btn fixed bottom-8 right-8 p-2 md:p-4 glass-card shadow-lg transition-all opacity-0 translate-y-5"
         >
           <div className="flex flex-col items-center">
-            <IoMdRocket size={32} className="mb-1 animate-bounce" />
-            <span className="text-xs font-medium">Scroll to Top</span>
+            <IoMdRocket size={32} className="mb-1 text-apple-300" />
+            <span className="text-xs font-medium text-apple-300">Top</span>
           </div>
-        </motion.button>
+        </button>
       </div>
     </div>
   );
