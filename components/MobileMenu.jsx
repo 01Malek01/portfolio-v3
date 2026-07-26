@@ -10,7 +10,6 @@ const navLinks = [
   { href: '#skills', label: 'Skills' },
   { href: '#ai-tools', label: 'AI Tools' },
   { href: '#projects', label: 'Projects' },
-  { href: '#freelance', label: 'Freelance' },
   { href: '#testimonials', label: 'Testimonials' },
   { href: '#contact', label: 'Contact' },
 ];

@@ -1,12 +1,11 @@
 'use client';
 import { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { FiGithub, FiExternalLink, FiArrowLeft, FiCode, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-import { useLenis } from '@/components/LenisProvider';
 
 export default function ProjectDetailClient({ project }) {
-  const lenis = useLenis();
+  const router = useRouter();
   const [currentImage, setCurrentImage] = useState(0);
 
   const images = project.images && project.images.length > 0
@@ -18,22 +17,13 @@ export default function ProjectDetailClient({ project }) {
   return (
     <div className="min-h-screen bg-apple-950 text-apple-50">
       <div className="fixed top-0 left-0 z-50 p-4 sm:p-6">
-        <Link
-          href="/#projects"
-          onClick={(e) => {
-            e.preventDefault();
-            if (lenis) {
-              lenis.scrollTo('#projects', { offset: -80 });
-            } else {
-              const el = document.querySelector('#projects');
-              if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-          }}
+        <button
+          onClick={() => router.push('/#projects')}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-lg glass-card text-apple-300 hover:text-purple-400 transition-all text-sm"
         >
           <FiArrowLeft className="w-4 h-4" />
           <span className="hidden sm:inline">Back to Projects</span>
-        </Link>
+        </button>
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20">
