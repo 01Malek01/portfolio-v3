@@ -45,13 +45,13 @@ export default function TechIconsBackground() {
   const rootRef = useRef(null);
 
   useEffect(() => {
-    // 1. Inject float Keyframes (Now with endless rotation)
+    // Inject float Keyframes (needed for both mobile and desktop)
     const style = document.createElement('style');
     const vars = [];
     FLOAT_DIRS.forEach((dir) => {
       const xs = dir[0] === 'R' ? 1 : -1;
       const ys = dir[1] === 'D' ? 1 : -1;
-      const rotDir = xs * ys > 0 ? 1 : -1; // Randomizes spin direction
+      const rotDir = xs * ys > 0 ? 1 : -1;
 
       vars.push(`
 @keyframes iconFloat${dir} {
@@ -63,6 +63,8 @@ export default function TechIconsBackground() {
     });
     style.textContent = vars.join('\n');
     document.head.appendChild(style);
+
+    if (window.innerWidth < 768) return () => style.remove();
 
     const root = rootRef.current;
     if (!root) return () => style.remove();

@@ -17,7 +17,7 @@ export default function LenisProvider({ children }) {
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       wheelMultiplier: 0.8,
-      touchMultiplier: 1.5,
+      touchMultiplier: 0.8,
       infinite: false,
     });
 

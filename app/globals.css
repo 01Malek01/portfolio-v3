@@ -16,7 +16,7 @@ html.lenis {
 }
 
 html.lenis-scrolling {
-  pointer-events: none;
+  pointer-events: auto;
 }
 
 ::-webkit-scrollbar {
