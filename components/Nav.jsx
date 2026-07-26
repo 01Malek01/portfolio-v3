@@ -17,11 +17,16 @@ export default function Nav() {
   { href: '#contact', label: 'Contact' }
  ];
 
- const handleClick = (href, e) => {
-   e.preventDefault();
-   setIsOpen(false);
-   lenis?.scrollTo(href, { offset: -80 });
- };
+  const handleClick = (href, e) => {
+    e.preventDefault();
+    setIsOpen(false);
+    if (lenis) {
+      lenis.scrollTo(href, { offset: -80 });
+    } else {
+      const el = document.querySelector(href);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
 
  return (
   <>

@@ -59,7 +59,7 @@ function Hero() {
 
           <a
             href="#projects"
-            onClick={(e) => { e.preventDefault(); lenis?.scrollTo('#projects', { offset: -80 }); }}
+            onClick={(e) => { e.preventDefault(); if (lenis) { lenis.scrollTo('#projects', { offset: -80 }); } else { const el = document.querySelector('#projects'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }}
             className="flex items-center justify-center gap-2 px-8 py-3 rounded-lg border border-white/[0.15] hover:bg-white/[0.06] transition-colors group cursor-pointer"
           >
             <span className="text-purple-400 font-semibold">View Projects</span>
@@ -72,7 +72,7 @@ function Hero() {
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 hidden lg:flex flex-col items-center"
         style={{ animation: 'heroFadeSlide 0.6s 2.5s both' }}
       >
-        <a href="#who-am-i" onClick={(e) => { e.preventDefault(); lenis?.scrollTo('#who-am-i', { offset: -80 }); }} className="text-apple-300 hover:text-purple-400 transition-colors cursor-pointer">
+        <a href="#who-am-i" onClick={(e) => { e.preventDefault(); if (lenis) { lenis.scrollTo('#who-am-i', { offset: -80 }); } else { const el = document.querySelector('#who-am-i'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }} className="text-apple-300 hover:text-purple-400 transition-colors cursor-pointer">
           <div
             className="w-6 h-6 border-2 border-purple-400/60 rounded-full"
             style={{ animation: 'heroBounce 2s ease-in-out infinite' }}

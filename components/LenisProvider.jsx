@@ -13,6 +13,11 @@ export default function LenisProvider({ children }) {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
+    if (window.innerWidth < 768) {
+      setReady(true);
+      return;
+    }
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),

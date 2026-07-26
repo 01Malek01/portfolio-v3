@@ -59,7 +59,12 @@ function MobileMenu() {
                     onClick={(e) => {
                       e.preventDefault();
                       setMenuOpen(false);
-                      lenis?.scrollTo(link.href, { offset: -80 });
+                      if (lenis) {
+                        lenis.scrollTo(link.href, { offset: -80 });
+                      } else {
+                        const el = document.querySelector(link.href);
+                        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      }
                     }}
                     className="group relative text-2xl font-medium text-apple-50/80 hover:text-purple-400 transition-colors"
                   >

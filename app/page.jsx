@@ -22,20 +22,31 @@ export default function Home() {
   const btnRef = useRef(null);
 
   useEffect(() => {
-    if (!lenis) return;
     const btn = btnRef.current;
     if (!btn) return;
 
-    const handleScroll = (e) => {
-      btn.classList.toggle(VISIBLE_CLASS, e.animatedScroll > window.innerHeight);
+    const toggleBtn = (scrollY) => {
+      btn.classList.toggle(VISIBLE_CLASS, scrollY > window.innerHeight);
     };
 
-    lenis.on('scroll', handleScroll);
-    return () => lenis.off('scroll', handleScroll);
+    if (lenis) {
+      const handleScroll = (e) => toggleBtn(e.animatedScroll);
+      lenis.on('scroll', handleScroll);
+      return () => lenis.off('scroll', handleScroll);
+    } else {
+      const handleNative = () => toggleBtn(window.scrollY);
+      window.addEventListener('scroll', handleNative, { passive: true });
+      handleNative();
+      return () => window.removeEventListener('scroll', handleNative);
+    }
   }, [lenis]);
 
   const scrollToTop = useCallback(() => {
-    lenis?.scrollTo(0, { duration: 1.2 });
+    if (lenis) {
+      lenis.scrollTo(0, { duration: 1.2 });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }, [lenis]);
 
   return (

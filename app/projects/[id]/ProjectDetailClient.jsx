@@ -22,7 +22,12 @@ export default function ProjectDetailClient({ project }) {
           href="/#projects"
           onClick={(e) => {
             e.preventDefault();
-            lenis?.scrollTo('#projects', { offset: -80 });
+            if (lenis) {
+              lenis.scrollTo('#projects', { offset: -80 });
+            } else {
+              const el = document.querySelector('#projects');
+              if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
           }}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-lg glass-card text-apple-300 hover:text-purple-400 transition-all text-sm"
         >
